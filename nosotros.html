@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros — Akantis Perfumería</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Tenor+Sans&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --oro: #9c7d42;
+            --negro: #1a1a1a;
+            --blanco: #ffffff;
+            --gris-claro: #fbfbfb;
+            --verde-wa: #25d366;
+            --sombra: 0 10px 30px rgba(0,0,0,0.05);
+            --radio: 15px;
+        }
+
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background-color: var(--blanco); color: var(--negro); line-height: 1.8; overflow-x: hidden; }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: white; position: fixed; width: 100%;
+            box-sizing: border-box; z-index: 2000; border-bottom: 1px solid #eee;
+        }
+
+        .logo { height: 40px; }
+
+        nav { display: flex; gap: 20px; }
+        nav a { 
+            text-decoration: none; color: var(--negro); font-size: 11px; 
+            letter-spacing: 2px; font-weight: bold; text-transform: uppercase;
+        }
+        nav a:hover { color: var(--oro); }
+
+        /* HERO CON TU NUEVA IMAGEN 1.1.1.1.jpg */
+        .main-hero { 
+            padding-top: 160px; 
+            padding-bottom: 80px; 
+            text-align: center; 
+            background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('1.1.1.1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .main-hero h1 { font-family: 'Cinzel', serif; font-size: 35px; letter-spacing: 8px; margin: 0; text-transform: uppercase; color: var(--negro); }
+        .divider { width: 60px; height: 2px; background: var(--oro); margin: 20px auto; }
+
+        section { padding: 80px 10%; max-width: 1100px; margin: 0 auto; }
+        
+        h2 { font-family: 'Cinzel', serif; font-size: 22px; color: var(--negro); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; text-align: center; }
+        
+        p { font-family: 'Tenor Sans', sans-serif; font-size: 16px; margin-bottom: 25px; color: #444; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        .highlight-text { font-weight: 600; color: var(--oro); text-transform: uppercase; letter-spacing: 1px; font-size: 14px; display: block; margin: 30px 0; }
+
+        /* TARJETAS ESTILO "CUADRITOS" (Nuestros Pilares / Misión / Visión) */
+        .info-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            margin: 50px 0; 
+        }
+
+        .info-box { 
+            background: var(--blanco); 
+            padding: 40px 30px; 
+            border-radius: var(--radio); 
+            box-shadow: var(--sombra);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        .info-box:hover { transform: translateY(-5px); }
+        
+        .info-box h3 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 18px; 
+            color: var(--negro); 
+            margin-bottom: 15px; 
+            border-bottom: 2px solid var(--oro);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .info-box p { font-size: 14px; text-align: center; margin: 0; }
+
+        /* LISTAS MINIMALISTAS */
+        .feature-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+        .feature-item { 
+            font-size: 12px; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            font-weight: 600; 
+            padding: 15px; 
+            border: 1px solid #eee; 
+            text-align: center; 
+            border-radius: 8px;
+        }
+
+        /* SECCIÓN CONTACTO BOUTIQUE */
+        .contact-section { background: var(--gris-claro); padding: 80px 10%; text-align: center; }
+        
+        .contact-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 20px; 
+            max-width: 1000px; 
+            margin: 40px auto; 
+        }
+
+        .contact-card {
+            background: var(--blanco);
+            padding: 30px 20px;
+            border-radius: var(--radio);
+            box-shadow: var(--sombra);
+            text-decoration: none;
+            color: var(--negro);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-card:hover { border: 1px solid var(--oro); }
+        .contact-card span { font-size: 11px; font-weight: bold; letter-spacing: 1px; color: var(--oro); text-transform: uppercase; }
+        .contact-card strong { font-size: 14px; font-family: 'Tenor Sans', sans-serif; }
+
+        .btn-wa-final {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: var(--negro); color: white; text-decoration: none;
+            padding: 18px 50px; border-radius: 50px; font-size: 12px; font-weight: bold;
+            letter-spacing: 2px; margin-top: 20px; transition: 0.3s;
+        }
+        .btn-wa-final:hover { background: var(--oro); transform: scale(1.05); }
+
+        @media(max-width: 768px) { section { padding: 40px 5%; } .main-hero h1 { font-size: 26px; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="UNISEX.png" alt="Akantis" class="logo"></a>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="premium.html">PREMIUM</a>
+        <a href="nosotros.html" style="color: var(--oro);">Nosotros</a>
+    </nav>
+</header>
+
+<div class="main-hero">
+    <h1>Nosotros</h1>
+    <div class="divider"></div>
+    <p style="letter-spacing: 4px; font-size: 12px; opacity: 0.6; font-weight: bold;">AKANTIS PERFUMERÍA</p>
+</div>
+
+<section>
+    <h2>Nuestra historia</h2>
+    <p>Akantis Perfumería nace de una necesidad muy clara: poder vivir la experiencia de una fragancia premium sin complicaciones, sin procesos fríos de compra y sin tener que pagar precios inaccesibles.</p>
+    <p>Observamos que muchas personas aman la perfumería de alta gama, pero la compra suele ser difícil: asesoría limitada, decisiones a ciegas y envíos lentos. Por eso decidimos crear una alternativa diferente: una perfumería tipo boutique, totalmente personalizada.</p>
+    
+    <span class="highlight-text">En Akantis no solo compras un perfume — recibes acompañamiento real.</span>
+    
+    <p>Cada cliente es asesorado directamente por nosotros vía WhatsApp para ayudarte a elegir la fragancia ideal según tu estilo, gustos, ocasiones de uso y personalidad.</p>
+
+    <h2>Qué hacemos</h2>
+    <p>Nos especializamos en fragancias inspiradas en perfumes premium, elaboradas con materias primas de alta calidad y una alta concentración aromática, lo que permite:</p>
+    
+    <div class="feature-list">
+        <div class="feature-item">Excelente fijación</div>
+        <div class="feature-item">Buena proyección</div>
+        <div class="feature-item">Aroma elegante y duradero</div>
+        <div class="feature-item">Experiencia de lujo</div>
+    </div>
+
+    <p>Nuestro objetivo no es reemplazar la perfumería de nicho o diseñador, sino acercarla a más personas. Queremos que cualquier persona pueda disfrutar un aroma sofisticado sin pagar precios excesivos.</p>
+
+    <div class="info-grid">
+        <div class="info-box">
+            <h3>Nuestra misión</h3>
+            <p>Dar a conocer el mundo de la perfumería premium y apoyar a coleccionistas, apasionados por las fragancias y personas que desean oler bien todos los días.</p>
+        </div>
+        <div class="info-box">
+            <h3>Nuestra visión</h3>
+            <p>Ser una perfumería boutique reconocida a nivel nacional por la calidad de nuestras fragancias y por la experiencia personalizada de compra.</p>
+        </div>
+    </div>
+
+    <h2>Envíos a todo el país</h2>
+    <p>Akantis Perfumería realiza despachos a nivel nacional. Nuestro compromiso es que, sin importar en qué ciudad te encuentres, puedas recibir tu fragancia directamente en tu hogar.</p>
+    <p>Por esta razón, <strong>todas nuestras ofertas incluyen el envío</strong>, para que la experiencia sea fácil, clara y sin costos ocultos.</p>
+
+    <h2>¿Por qué comprar por WhatsApp?</h2>
+    <div class="info-grid">
+        <div class="info-box">
+            <h3>Personalidad</h3>
+            <p>Te ayudamos a elegir según tu estilo único.</p>
+        </div>
+        <div class="info-box">
+            <h3>Asesoría</h3>
+            <p>Recomendamos según el clima u ocasión.</p>
+        </div>
+        <div class="info-box">
+            <h3>Alternativas</h3>
+            <p>Encontramos opciones similares a perfumes famosos.</p>
+        </div>
+    </div>
+
+    <h2>Nuestros valores</h2>
+    <div class="feature-list">
+        <div class="feature-item">Atención personalizada</div>
+        <div class="feature-item">Honestidad</div>
+        <div class="feature-item">Calidad superior</div>
+        <div class="feature-item">Cercanía</div>
+        <div class="feature-item">Pasión real</div>
+    </div>
+</section>
+
+<div class="contact-section">
+    <h2>📞 Contacto</h2>
+    <p>Estamos listos para asesorarte de manera personalizada.</p>
+    
+    <div class="contact-grid">
+        <a href="https://wa.me/573134778625" class="contact-card">
+            <span>WhatsApp</span>
+            <strong>313 477 8625</strong>
+        </a>
+        <a href="mailto:akantiscosmetics@gmail.com" class="contact-card">
+            <span>Email</span>
+            <strong>akantiscosmetics@gmail.com</strong>
+        </a>
+        <a href="https://instagram.com/akantis_ak" class="contact-card">
+            <span>Instagram</span>
+            <strong>@akantis_ak</strong>
+        </a>
+        <a href="https://facebook.com/AkantisCosmetics" class="contact-card">
+            <span>Facebook</span>
+            <strong>Akantis Cosmetics</strong>
+        </a>
+    </div>
+    
+    <a href="https://wa.me/573134778625" class="btn-wa-final">
+        CHATEAR CON NOSOTROS AHORA
+    </a>
+</div>
+
+<footer style="padding: 60px; text-align: center; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <img src="UNISEX.png" alt="Akantis" style="height: 30px; opacity: 0.3; margin-bottom: 20px; display: block;">
+    <p style="font-size: 10px; letter-spacing: 2px; opacity: 0.5; margin: 0; text-align: center; width: 100%;">
+        &copy; 2026 AKANTIS PERFUMERÍA | BOGOTÁ, COLOMBIA
+    </p>
+</footer>
+
+</body>
+</html>

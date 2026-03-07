@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akantis Perfumería | Inicio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Tenor+Sans&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --oro: #9c7d42;
+            --negro: #1a1a1a;
+            --blanco: #ffffff;
+            --gris-claro: #f4f4f4;
+            --verde-wa: #25d366;
+        }
+
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background-color: var(--blanco); color: var(--negro); overflow-x: hidden; }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: white; position: fixed; width: 100%;
+            box-sizing: border-box; z-index: 2000; border-bottom: 1px solid #eee;
+        }
+
+        .logo { height: 40px; }
+
+        nav { display: flex; gap: 20px; }
+        nav a { 
+            text-decoration: none; color: var(--negro); font-size: 11px; 
+            letter-spacing: 2px; font-weight: bold; text-transform: uppercase;
+        }
+        nav a:hover { color: var(--oro); }
+
+        .main-hero { padding-top: 70px; width: 100%; }
+        .main-hero img { width: 100%; display: block; }
+
+.intro-text { 
+    width: 90%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px; 
+    background: #ffffff; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eeeeee; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Cuadro de texto centrado - VERSIÓN CORREGIDA */
+.intro-text { 
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto !important; /* El !important fuerza el centrado */
+    padding: 25px; 
+    background: #ffffff; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eeeeee; 
+    text-align: center;
+    display: block;
+    position: relative;
+    left: auto;
+    right: auto;
+    float: none;
+    clear: both;
+}
+        .intro-text h2 { font-family: 'Cinzel', serif; color: var(--oro); font-size: 20px; margin-bottom: 15px; text-transform: uppercase; }
+        .intro-text p { font-family: 'Tenor Sans', sans-serif; font-size: 14px; line-height: 1.6; color: #333; margin: 0; }
+
+
+        .catalog-section { padding: 20px 5% 60px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+
+        .card { background: white; border: 1px solid #eee; padding: 15px; text-align: center; display: flex; flex-direction: column; transition: 0.3s; }
+.img-container { 
+    aspect-ratio: 1 / 1; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 15px; 
+    background: #fbfbfb;
+    overflow: hidden; /* Esto evita que las ofertas estiren la pantalla */
+}
+
+.img-container img { 
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
+}
+
+h3 { 
+    font-size: 13px; 
+    margin: 10px 0; 
+    font-family: 'Tenor Sans', sans-serif; 
+    letter-spacing: 1px; 
+    color: var(--oro); 
+}
+        /* BOTONES DUALES (WHATSAPP + CARRITO NEGRO) */
+        .button-container { display: flex; gap: 8px; margin-top: auto; }
+        .price-link, .add-to-cart-btn {
+            text-decoration: none; font-size: 11px; font-weight: 400; border: 1px solid var(--oro); 
+            padding: 12px 5px; display: flex; align-items: center; justify-content: center;
+            text-transform: uppercase; letter-spacing: 1px; background: transparent; cursor: pointer;
+            transition: 0.3s; font-family: 'Montserrat', sans-serif;
+        }
+        .price-link { flex: 4; color: var(--oro); gap: 8px; }
+        .add-to-cart-btn { flex: 1.2; color: #000; font-size: 16px; border: 1px solid var(--oro); }
+        .price-link:hover, .add-to-cart-btn:hover { background: #f9f9f9; border-color: var(--negro); }
+
+        .ws-icon-small { width: 16px; height: 16px; }
+
+
+.btn-send-wa { 
+    background: var(--verde-wa); 
+    color: white; 
+    border: none; 
+    padding: 15px; 
+    width: 100%; 
+    font-weight: bold; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    font-family: 'Montserrat';
+    margin-top: auto; /* Esta es la clave: empuja el botón hacia arriba si hay espacio */
+    flex-shrink: 0;   /* Evita que el botón se aplaste o se salga de la pantalla */
+}
+
+
+.cart-items-container { 
+    flex: 1; 
+    overflow-y: auto; 
+    margin-bottom: 15px; 
+    min-height: 0; 
+}       
+
+
+ /* PANEL DEL CARRITO */
+       /* PANEL DEL CARRITO - Corregido para que nada se corte */
+#side-cart {
+    position: fixed; 
+    top: 0; 
+    right: -100%; 
+    width: 320px; 
+    height: 100dvh; /* dvh se ajusta dinámicamente si aparece la barra de Android */
+    background: white; 
+    z-index: 4000; 
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: 0.4s; 
+    display: flex; 
+    flex-direction: column; 
+    padding: 20px;
+    box-sizing: border-box; /* Mantiene el padding por dentro del alto */
+}
+
+#side-cart.active { right: 0; }
+
+.cart-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 10px; 
+    flex-shrink: 0; /* Evita que el título se aplaste */
+}
+
+.cart-item { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 15px; 
+    font-size: 12px; /* Aquí ajustas el tamaño para que no se vea gigante */
+    border-bottom: 1px solid #f9f9f9; 
+    padding-bottom: 8px;
+}
+/* El botón ahora siempre estará visible al final */
+.btn-send-wa { 
+    background: var(--verde-wa); 
+    color: white; 
+    border: none; 
+    padding: 15px; 
+    width: 100%; 
+    font-weight: bold; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    font-family: 'Montserrat';
+    flex-shrink: 0; /* OBLIGATORIO: Evita que el botón se reduzca o desaparezca */
+    margin-top: auto;
+    margin-bottom: 10px; /* Espacio extra para que no pegue con la barra de navegación de Android */
+}
+        .view-cart-float { 
+            position: fixed; bottom: 85px; right: 20px; background: var(--negro); 
+            color: white; padding: 12px 18px; border-radius: 30px; z-index: 3500; 
+            cursor: pointer; font-weight: bold; font-size: 11px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: var(--verde-wa); width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 3000; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .whatsapp-float svg { width: 32px; height: 32px; fill: white; }
+
+        footer { text-align: center; padding: 50px 5%; background: #f4f4f4; border-top: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+       @media (max-width: 600px) {
+    .grid { gap: 8px; } /* Reduce el espacio entre tarjetas */
+}
+            .intro-text { margin: 10px 15px; padding: 15px; }
+            .intro-text h2 { font-size: 16px; }
+            .intro-text p { font-size: 12px; }
+            .grid { gap: 12px; }
+        }
+        @media(min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+        @media(min-width: 1024px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="UNISEX.webp" alt="Akantis" class="logo"></a>
+    <nav>
+        <a href="index.html" style="color: var(--oro);">Inicio</a>
+        <a href="premium.html">Premium</a>
+        <a href="nosotros.html">Nosotros</a>
+    </nav>
+</header>
+
+<div class="main-hero">
+    <img src="baner-1-1 (2).webp" alt="Akantis Perfumería Banner">
+</div>
+
+<section class="intro-text">
+    <h2>El arte de la fragancia premium</h2>
+    <p>
+        Elige el combo que desees o escríbenos a WhatsApp y ármalo como quieras. 
+        Recuerda que nuestros perfumes están inspirados en fragancias premium. 
+        Cuéntanos cuáles son tus favoritas para crear tu combo perfecto y disfrutar de tus aromas preferidos.
+    </p>
+</section>
+
+<div class="view-cart-float" onclick="toggleCart()">🛒 MI LISTA</div>
+
+<div id="side-cart">
+    <div class="cart-header">
+        <h3 style="margin:0; color:var(--negro); font-family: 'Cinzel';">MI PEDIDO</h3>
+        <span onclick="toggleCart()" style="cursor:pointer; font-size:28px;">&times;</span>
+    </div>
+    <div id="cart-items" class="cart-items-container"></div>
+    <button class="btn-send-wa" onclick="enviarWhatsApp()">SOLICITAR POR WHATSAPP</button>
+</div>
+
+<section class="catalog-section">
+    <div class="grid">
+        <div class="card">
+            <div class="img-container"><img src="aa1 (15).webp" alt="Combo 15"></div>
+            <h3>Colección Akantis 15</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 15" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 15')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (10).webp" alt="Combo 10"></div>
+            <h3>Colección Akantis 10</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 10" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 10')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (14).webp" alt="Combo 14"></div>
+            <h3>Colección Akantis 14</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 14" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 14')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (4).webp" alt="Combo 4"></div>
+            <h3>Colección Akantis 4</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 4" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 4')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (11).webp" alt="Combo 11"></div>
+            <h3>Colección Akantis 11</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 11" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 11')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (2).webp" alt="Combo 2"></div>
+            <h3>Colección Akantis 2</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 2" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 2')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (6).webp" alt="Combo 6"></div>
+            <h3>Colección Akantis 6</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 6" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 6')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (7).webp" alt="Combo 7"></div>
+            <h3>Colección Akantis 7</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 7" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 7')">🛒</button>
+            </div>
+        </div>
+<div class="card">
+            <div class="img-container"><img src="aa1 (13).webp" alt="Combo 13"></div>
+            <h3>Colección Akantis 13</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 13" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 13')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (12).webp" alt="Combo 12"></div>
+            <h3>Colección Akantis 12</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 12" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 12')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (8).webp" alt="Combo 8"></div>
+            <h3>Colección Akantis 8</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 8" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 8')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (3).webp" alt="Combo 3"></div>
+            <h3>Colección Akantis 3</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 3" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 3')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (1).webp" alt="Combo 1"></div>
+            <h3>Colección Akantis 1</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 1" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 1')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (5).webp" alt="Combo 5"></div>
+            <h3>Colección Akantis 5</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 5" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 5')">🛒</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img-container"><img src="aa1 (9).webp" alt="Combo 9"></div>
+            <h3>Colección Akantis 9</h3>
+            <div class="button-container">
+                <a href="https://wa.me/573134778625?text=Info: Colección Akantis 9" class="price-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="ws-icon-small"> WHATSAPP
+                </a>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito('Colección Akantis 9')">🛒</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <img src="UNISEX.webp" alt="Akantis" class="logo" style="margin-bottom:20px; filter: contrast(0.5);">
+    <p style="font-size: 14px; color: #666;">&copy; 2026 Akantis Perfumería | BOGOTÁ, COLOMBIA</p>
+</footer>
+
+<a href="https://wa.me/573134778625" class="whatsapp-float" target="_blank">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.4 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.4-29.8-17-41.1-4.5-10.9-9.1-9.5-12.4-9.7-3.2-.1-6.9-.1-10.6-.1-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.3 5.7 23.6 9.2 31.7 11.7 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</a>
+
+<script>
+let carrito = JSON.parse(localStorage.getItem('carritoAkantis')) || [];
+
+function toggleCart() {
+    document.getElementById('side-cart').classList.toggle('active');
+    renderizarCarrito();
+}
+
+function agregarAlCarrito(nombre) {
+    let item = carrito.find(i => i.nombre === nombre);
+    if (item) {
+        item.cantidad++;
+    } else {
+        carrito.push({ nombre: nombre, cantidad: 1 });
+    }
+    guardarYActualizar();
+    alert("Agregado a tu lista: " + nombre);
+}
+
+function cambiarCantidad(nombre, delta) {
+    let item = carrito.find(i => i.nombre === nombre);
+    if (item) {
+        item.cantidad += delta;
+        if (item.cantidad <= 0) { eliminarItem(nombre); }
+        guardarYActualizar();
+    }
+}
+
+function eliminarItem(nombre) {
+    carrito = carrito.filter(i => i.nombre !== nombre);
+    guardarYActualizar();
+}
+
+function guardarYActualizar() {
+    localStorage.setItem('carritoAkantis', JSON.stringify(carrito));
+    renderizarCarrito();
+}
+
+function renderizarCarrito() {
+    const container = document.getElementById('cart-items');
+    container.innerHTML = "";
+    if (carrito.length === 0) {
+        container.innerHTML = "<p style='text-align:center; opacity:0.5; margin-top:50px;'>Tu lista está vacía</p>";
+        return;
+    }
+    carrito.forEach(item => {
+        container.innerHTML += `
+            <div class="cart-item">
+                <div style="flex:1;"><strong>${item.nombre}</strong></div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <button class="qty-btn" onclick="cambiarCantidad('${item.nombre}', -1)">-</button>
+                    <span>${item.cantidad}</span>
+                    <button class="qty-btn" onclick="cambiarCantidad('${item.nombre}', 1)">+</button>
+                    <button onclick="eliminarItem('${item.nombre}')" style="border:none; background:none; cursor:pointer; font-size:16px; margin-left:5px;">🗑️</button>
+                </div>
+            </div>`;
+    });
+}
+
+function enviarWhatsApp() {
+    if (carrito.length === 0) return alert("Agrega perfumes primero");
+    let mensaje = "Hola Akantis, me gustaría solicitar los siguientes productos:\n\n";
+    carrito.forEach(item => {
+        mensaje += `• ${item.cantidad}x ${item.nombre}\n`;
+    });
+    mensaje += "\n¿Me confirmas disponibilidad? Gracias.";
+    window.open("https://wa.me/573134778625?text=" + encodeURIComponent(mensaje), "_blank");
+}
+</script>
+
+</body>
+</html>
