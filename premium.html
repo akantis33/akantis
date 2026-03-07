@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Línea AAA | Akantis Perfumería</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Tenor+Sans&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --oro: #9c7d42;
+            --negro: #1a1a1a;
+            --blanco: #ffffff;
+            --gris-claro: #f4f4f4;
+            --verde-wa: #25d366;
+        }
+
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background-color: var(--blanco); color: var(--negro); overflow-x: hidden; }
+
+        /* HEADER RESTAURADO CON 3 MENÚS */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: white; position: fixed; width: 100%;
+            box-sizing: border-box; z-index: 2000; border-bottom: 1px solid #eee;
+        }
+
+        .logo { height: 40px; }
+
+        nav { display: flex; gap: 20px; }
+        nav a { 
+            text-decoration: none; color: var(--negro); font-size: 11px; 
+            letter-spacing: 2px; font-weight: bold; text-transform: uppercase;
+        }
+        nav a:hover { color: var(--oro); }
+
+        /* BANNER PRINCIPAL RESTAURADO */
+        .main-hero { padding-top: 70px; width: 100%; }
+        .main-hero img { width: 100%; display: block; }
+
+        /* CONTROLES: BUSCADOR Y 6 FILTROS */
+        .controls { 
+            padding: 20px 5%; text-align: center; background: var(--gris-claro);
+            position: sticky; top: 70px; z-index: 1500; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        #brandSearch {
+            width: 100%; max-width: 400px; padding: 12px; border: 1px solid var(--oro);
+            border-radius: 25px; margin-bottom: 15px; outline: none; font-family: 'Montserrat';
+        }
+
+        .filter-container { 
+            display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; 
+        }
+        .filter-btn {
+            padding: 6px 12px; border: 1px solid var(--oro); background: white;
+            color: var(--oro); cursor: pointer; border-radius: 20px; font-size: 10px;
+            text-transform: uppercase; transition: 0.3s; font-weight: bold;
+        }
+        .filter-btn.active { background: var(--oro); color: white; }
+
+        /* GRILLA Y TARJETAS */
+        section { padding: 20px 3%; }
+        .grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 12px; max-width: 1200px; margin: 0 auto;
+        }
+
+        .card {
+            background: white; border: 1px solid #eee; padding: 10px;
+            text-align: center; display: flex; flex-direction: column; transition: 0.3s;
+        }
+
+        .img-container { height: 140px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; background: #fbfbfb; }
+        .img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        h3 { font-size: 12px; margin: 5px 0 10px; min-height: 30px; font-family: 'Tenor Sans', sans-serif; display: flex; align-items: center; justify-content: center; }
+
+        /* BOTÓN ORO CON ICONO WA */
+        .price-link {
+            color: var(--oro); text-decoration: none; font-size: 10px;
+            font-weight: bold; border: 1px solid var(--oro); padding: 8px 2px;
+            display: flex; align-items: center; justify-content: center; gap: 5px;
+            text-transform: uppercase; margin-top: auto;
+        }
+
+        .ws-icon { width: 14px; height: 14px; }
+
+        .brand-banner { width: 100%; margin: 30px 0 15px; border-radius: 4px; display: block; }
+        
+        @media(min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+
+        /* BOTÓN FLOTANTE WHATSAPP RESTAURADO */
+        .whatsapp-float {
+            position: fixed; bottom: 20px; right: 20px; background: var(--verde-wa);
+            width: 50px; height: 50px; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center; z-index: 2000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .whatsapp-float svg { width: 30px; height: 30px; fill: white; }
+
+        #btnBackToTop { 
+            display: none; position: fixed; bottom: 85px; right: 25px; 
+            z-index: 2000; border: none; background: #333; color: white; 
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer; 
+        }
+/* Cuadro de aviso optimizado para Akantis */
+.catalog-notice {
+    max-width: 900px;
+    margin: 10px auto; 
+    padding: 15px;      
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 1px solid #eeeeee;
+    text-align: center;
+}
+
+.notice-text {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 14px;    
+    color: #333333;
+    line-height: 1.4;   
+    margin: 0;
+}
+
+/* Ajustes específicos para Celulares */
+@media (max-width: 600px) {
+    .catalog-notice {
+        margin: 5px 15px; 
+        padding: 10px;    
+    }
+    .notice-text {
+        font-size: 12px;  
+        line-height: 1.3;
+    }
+    .notice-text br {
+        display: none;    
+    }
+}
+/* Estilos del Carrito Lateral */
+/* Estilos del Carrito Lateral - FIX FINAL */
+#side-cart {
+    position: fixed; 
+    top: 0; 
+    right: -100%; 
+    width: 320px; 
+    height: 100dvh; /* SE AJUSTA DINÁMICAMENTE EN ANDROID */
+    background: white; 
+    z-index: 4000; 
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: 0.4s; 
+    display: flex; 
+    flex-direction: column; 
+    padding: 20px;
+    box-sizing: border-box; /* MANTIENE EL PADDING DENTRO DEL ALTO TOTAL */
+}
+
+#side-cart.active { right: 0; }
+
+.cart-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 10px;
+    flex-shrink: 0; 
+}
+
+.cart-items-container { 
+    flex: 1; 
+    overflow-y: auto; 
+    margin: 15px 0; 
+    min-height: 0; 
+}
+
+.cart-item { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 15px; 
+    font-size: 12px; 
+    border-bottom: 1px solid #f9f9f9; 
+    padding-bottom: 8px;
+}
+
+ .btn-send-wa { 
+    background: var(--verde-wa); 
+    color: white; 
+    border: none; 
+    padding: 15px; 
+    width: 100%; 
+    font-weight: bold; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    font-family: 'Montserrat';
+    flex-shrink: 0; /* EVITA QUE EL BOTÓN SE APLASTE EN MÓVILES */
+    margin-top: auto;
+    margin-bottom: 5px; /* ESPACIO DE SEGURIDAD PARA LA BARRA DE ANDROID */
+}
+/* Botón flotante MI LISTA */
+.view-cart-float { 
+    position: fixed; bottom: 85px; right: 20px; background: var(--negro); 
+    color: white; padding: 12px 18px; border-radius: 30px; z-index: 3500; 
+    cursor: pointer; font-weight: bold; font-size: 11px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex; align-items: center; gap: 8px;
+}
+
+/* Ajuste de botones en las tarjetas */
+/* Contenedor principal de botones corregido */
+/* Forzamos que el contenedor no deje espacios extra */
+.button-container { 
+    display: flex !important; 
+    gap: 8px !important; 
+    margin-top: auto !important; 
+    align-items: stretch !important; 
+    padding: 0 !important;
+    height: 45px !important; /* Altura total del bloque de botones */
+}
+
+/* Botón de WhatsApp - Forzado */
+.price-link {
+    flex: 3 !important;
+    height: 100% !important; /* Ocupa todo el alto del contenedor */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    border: 1px solid var(--oro) !important;
+    color: var(--oro) !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Botón del carrito - Forzado */
+.add-to-cart-btn {
+    flex: 1 !important;
+    height: 100% !important; /* Ocupa todo el alto del contenedor */
+    color: var(--oro) !important; 
+    border: 1px solid var(--oro) !important; 
+    background: transparent !important; 
+    cursor: pointer !important; 
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* El icono de WhatsApp dentro del botón */
+.price-link img, .ws-icon-small {
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 5px !important;
+}
+    </style>
+</head>
+<body>
+     <div class="view-cart-float" onclick="toggleCart()">🛒 MI LISTA</div>
+
+<div id="side-cart">
+    <div class="cart-header">
+        <h3 style="margin:0; color:var(--negro); font-family: 'Cinzel';">MI PEDIDO</h3>
+        <span onclick="toggleCart()" style="cursor:pointer; font-size:28px;">&times;</span>
+    </div>
+    <div id="cart-items" class="cart-items-container"></div>
+    <button class="btn-send-wa" onclick="enviarWhatsApp()">SOLICITAR POR WHATSAPP</button>
+</div>
+<header>
+    <a href="index.html"><img src="UNISEX.webp" alt="Akantis" class="logo"></a>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="linea-aaa.html" style="color: var(--oro);">PREMIUM</a>
+        <a href="nosotros.html#nosotros">Nosotros</a>
+    </nav>
+</header>
+
+<div class="main-hero">
+    <img src="baner_0000.webp" alt="Perfumes Premium Akantis">
+</div>
+
+<div class="controls">
+    <input type="text" id="brandSearch" onkeyup="searchFunction()" placeholder="Buscar perfume o marca...">
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterGender('all')">Todos</button>
+        <button class="filter-btn" onclick="filterGender('hombre')">Hombre</button>
+        <button class="filter-btn" onclick="filterGender('mujer')">Mujer</button>
+        <button class="filter-btn" onclick="filterGender('arabes')">Árabes</button>
+        <button class="filter-btn" onclick="filterGender('unisex')">Unisex</button>
+        <button class="filter-btn" onclick="filterGender('coleccion')">Colección</button>
+    </div>
+</div>
+
+<section id="catalog">
+
+<section id="catalog">
+    <div class="catalog-notice">
+        <p class="notice-text">
+            Si no ves el perfume que estás buscando, Escríbenos a <a href="https://wa.me/573134778625" style="color: var(--oro); text-decoration: none; font-weight: bold;">WhatsApp</a>. Contamos con un catálogo mucho más amplio del que aparece en la página, así que seguramente podremos conseguir tu fragancia favorita.
+            <br><br>
+            <span style="color: #9c7d42; font-weight: bold;">Todos nuestros perfumes se entregan tal como se muestran en las fotografías, con su empaque y completamente sellados.</span>
+        </p>
+    </div>
+
+  
+<div class="brand-group hombre" data-brand="antonio banderas">
+        <img src="baner_1.webp" alt="ANTONIO BANDERAS" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre">
+                <div class="img-container"><img src="blu-seduction.webp" alt="Blue Seduction"></div>
+                <h3>Blue Seduction</h3>
+                <a href="https://wa.me/573134778625?text=Info: Blue Seduction" class="price-link">WHATSAPP</a>
+            </div>
+            <div class="card hombre">
+                <div class="img-container"><img src="icon.webp" alt="Icon"></div>
+                <h3>Icon</h3>
+                <a href="https://wa.me/573134778625?text=Info: Icon" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="jean pascal">
+        <img src="baner_3.webp" alt="JEAN PASCAL" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre">
+                <div class="img-container"><img src="jean-pascal-caja.webp"></div>
+                <h3>Jean Pascal Caja</h3>
+                <a href="https://wa.me/573134778625?text=Info: Jean Pascal Caja" class="price-link">WHATSAPP</a>
+            </div>
+            <div class="card hombre">
+                <div class="img-container"><img src="jean-pascal-cuero.webp"></div>
+                <h3>Jean Pascal Cuero</h3>
+                <a href="https://wa.me/573134778625?text=Info: Jean Pascal Cuero" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre coleccion" data-brand="parfums de marly">
+        <img src="baner_4.webp
+" alt="Parfums de Marly" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre coleccion">
+                <div class="img-container"><img src="layton.webp"></div>
+                <h3>Layton</h3>
+                <a href="https://wa.me/573134778625?text=Info: Layton" class="price-link">WHATSAPP</a>
+            </div>
+            <div class="card hombre coleccion">
+                <div class="img-container"><img src="kalan.webp"></div>
+                <h3>Kalan</h3>
+                <a href="https://wa.me/573134778625?text=Info: Kalan" class="price-link">WHATSAPP</a>
+            </div>
+            <div class="card hombre coleccion">
+                <div class="img-container"><img src="pegasus.webp"></div>
+                <h3>Pegasus</h3>
+                <a href="https://wa.me/573134778625?text=Info: Pegasus" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="hugo boss">
+        <img src="baner_6.webp" alt="HUGO BOSS" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="boss-bottled.webp"></div><h3>Boss Bottled</h3><a href="https://wa.me/573134778625?text=Info: Boss Bottled" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="boss-bottle-night.webp"></div><h3>Bottle Night</h3><a href="https://wa.me/573134778625?text=Info: Bottle Night" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="boss-unlimited.webp"></div><h3>Unlimited</h3><a href="https://wa.me/573134778625?text=Info: Unlimited" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="boss-bottled-tonic.webp"></div><h3>Bottled Tonic</h3><a href="https://wa.me/573134778625?text=Info: Bottled Tonic" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="boss-oud-aromatic.webp"></div><h3>Oud Aromatic</h3><a href="https://wa.me/573134778625?text=Info: Oud Aromatic" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="boss-bottled-oud-saffron.webp"></div><h3>Bottled Oud Saffron</h3><a href="https://wa.me/573134778625?text=Info: Bottled Oud Saffron" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="bottled-elixir.webp"></div><h3>Bottled Elixir</h3><a href="https://wa.me/573134778625?text=Info: Bottled Elixir" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="boss-sport.webp"></div><h3>Bottled Sport</h3><a href="https://wa.me/573134778625?text=Info: Bottled Sport" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="boss-in-motion.webp"></div><h3>Boss In Motion</h3><a href="https://wa.me/573134778625?text=Info: Boss In Motion" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="boss-orange.webp"></div><h3>Orange</h3><a href="https://wa.me/573134778625?text=Info: Orange Boss" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="boss-hugo-man.webp"></div><h3>Hugo Man</h3><a href="https://wa.me/573134778625?text=Info: Hugo Man" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="16.webp"></div><h3>Hugo Red</h3><a href="https://wa.me/573134778625?text=Info: Hugo Red" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="22.webp"></div><h3>Just Different</h3><a href="https://wa.me/573134778625?text=Info: Just Different" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="23.webp"></div><h3>The Scent</h3><a href="https://wa.me/573134778625?text=Info: The Scent Boss" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="21.webp"></div><h3>Energise</h3><a href="https://wa.me/573134778625?text=Info: Energise" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="20.webp"></div><h3>Dark Blue</h3><a href="https://wa.me/573134778625?text=Info: Dark Blue" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group hombre" data-brand="bvlgari">
+        <img src="baner_8.webp" alt="BVLGARI" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="B1_Wood Essence.webp"></div><h3>Wood Essence</h3><a href="https://wa.me/573134778625?text=Info: Wood Essence" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="B2_Glacial Essence.webp"></div><h3>Glacial Essence</h3><a href="https://wa.me/573134778625?text=Info: Glacial Essence" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="24.webp"></div><h3>Main Black</h3><a href="https://wa.me/573134778625?text=Info: Main Black" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="28.webp"></div><h3>BLV Men</h3><a href="https://wa.me/573134778625?text=Info: BLV Men" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="29.webp"></div><h3>AQVA</h3><a href="https://wa.me/573134778625?text=Info: AQVA" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="30.webp"></div><h3>AQVA Atlantiqve</h3><a href="https://wa.me/573134778625?text=Info: AQVA Atlantiqve" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="27.webp"></div><h3>AQVA Marine</h3><a href="https://wa.me/573134778625?text=Info: AQVA Marine" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="33.webp"></div><h3>AQVA Amara</h3><a href="https://wa.me/573134778625?text=Info: AQVA Amara" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="31.webp"></div><h3>Pour Homme</h3><a href="https://wa.me/573134778625?text=Info: Pour Homme" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="32.webp"></div><h3>Soir</h3><a href="https://wa.me/573134778625?text=Info: Soir" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="carolina herrera">
+        <img src="baner_9.webp" alt="CAROLINA HERRERA" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="37.webp"></div><h3>212 Men</h3><a href="https://wa.me/573134778625?text=Info: 212 Men" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="40.webp"></div><h3>212 Sexy Men</h3><a href="https://wa.me/573134778625?text=Info: 212 Sexy Men" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="35.webp"></div><h3>212 VIP</h3><a href="https://wa.me/573134778625?text=Info: 212 VIP" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="38.webp"></div><h3>212 VIP BLACK</h3><a href="https://wa.me/573134778625?text=Info: 212 VIP BLACK" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="36.webp"></div><h3>Wild Party</h3><a href="https://wa.me/573134778625?text=Info: Wild Party" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="34.webp"></div><h3>212 Heroes</h3><a href="https://wa.me/573134778625?text=Info: 212 Heroes" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="41.webp"></div><h3>Laundry Colector Ed Men</h3><a href="https://wa.me/573134778625?text=Info: Laundry Colector Ed Men" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="39.webp"></div><h3>212 Vip Black Red</h3><a href="https://wa.me/573134778625?text=Info: 212 Vip Black Red" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="42.webp"></div><h3>212 Vip Wins</h3><a href="https://wa.me/573134778625?text=Info: 212 Vip Wins" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="47.webp"></div><h3>212 Aqua Men</h3><a href="https://wa.me/573134778625?text=Info: 212 Aqua Men" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="45.webp"></div><h3>212 Vip Black I Love NY</h3><a href="https://wa.me/573134778625?text=Info: 212 Vip Black I Love NY" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="44.webp"></div><h3>Bad Boy</h3><a href="https://wa.me/573134778625?text=Info: Bad Boy" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="43.webp"></div><h3>CH Men</h3><a href="https://wa.me/573134778625?text=Info: CH Men" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group hombre unisex" data-brand="calvin klein">
+        <img src="baner_10.webp" alt="CALVIN KLEIN" class="brand-banner">
+        <div class="grid">
+            <div class="card unisex"><div class="img-container"><img src="46.webp"></div><h3>CK One</h3><a href="https://wa.me/573134778625?text=Info: CK One" class="price-link">WHATSAPP</a></div>
+            <div class="card unisex"><div class="img-container"><img src="48.webp"></div><h3>CK Be</h3><a href="https://wa.me/573134778625?text=Info: CK Be" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="51.webp"></div><h3>CK Shock</h3><a href="https://wa.me/573134778625?text=Info: CK Shock" class="price-link">WHATSAPP</a></div>
+            <div class="card unisex"><div class="img-container"><img src="53.webp"></div><h3>Every One</h3><a href="https://wa.me/573134778625?text=Info: Every One" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="50.webp"></div><h3>CK In2u Men</h3><a href="https://wa.me/573134778625?text=Info: CK In2u Men" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="49.webp"></div><h3>Euphoria Men</h3><a href="https://wa.me/573134778625?text=Info: Euphoria Men" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="52.webp"></div><h3>CK Free</h3><a href="https://wa.me/573134778625?text=Info: CK Free" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="56.webp"></div><h3>CK Free Sport</h3><a href="https://wa.me/573134778625?text=Info: CK Free Sport" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="54.webp"></div><h3>Eternity</h3><a href="https://wa.me/573134778625?text=Info: Eternity" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="givenchy">
+        <img src="baner_12.webp" alt="GIVENCHY" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="57.webp"></div><h3>Pour Homme</h3><a href="https://wa.me/573134778625?text=Info: Pour Homme" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="55.webp"></div><h3>Blue Label</h3><a href="https://wa.me/573134778625?text=Info: Blue Label" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="59.webp"></div><h3>Gentleman</h3><a href="https://wa.me/573134778625?text=Info: Gentleman" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre coleccion" data-brand="creed">
+        <img src="baner_13.webp" alt="CREED" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre coleccion"><div class="img-container"><img src="58.webp"></div><h3>Silver Mountain</h3><a href="https://wa.me/573134778625?text=Info: Silver Mountain" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="61.webp"></div><h3>Creed Aventus</h3><a href="https://wa.me/573134778625?text=Info: Creed Aventus" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="60.webp"></div><h3>Millésime Impérial</h3><a href="https://wa.me/573134778625?text=Info: Millésime Impérial" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="64.webp"></div><h3>White Island</h3><a href="https://wa.me/573134778625?text=Info: White Island" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="65.webp"></div><h3>Irish Tweed</h3><a href="https://wa.me/573134778625?text=Info: Irish Tweed" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="62.webp"></div><h3>Viking</h3><a href="https://wa.me/573134778625?text=Info: Viking" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="66.webp"></div><h3>Santal</h3><a href="https://wa.me/573134778625?text=Info: Santal" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="63.webp"></div><h3>Vetiver</h3><a href="https://wa.me/573134778625?text=Info: Vetiver" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group hombre coleccion" data-brand="christian dior">
+        <img src="baner_15.webp" alt="CHRISTIAN DIOR" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre coleccion"><div class="img-container"><img src="74.webp"></div><h3>Fahrenheit</h3><a href="https://wa.me/573134778625?text=Info: Fahrenheit" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="69.webp"></div><h3>Sauvage</h3><a href="https://wa.me/573134778625?text=Info: Sauvage" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="67.webp"></div><h3>Sauvage Elixir</h3><a href="https://wa.me/573134778625?text=Info: Sauvage Elixir" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="70.webp"></div><h3>Dior Homme Cologne</h3><a href="https://wa.me/573134778625?text=Info: Dior Homme Cologne" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="71.webp"></div><h3>Dior Homme Intense</h3><a href="https://wa.me/573134778625?text=Info: Dior Homme Intense" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="dolce & gabbana">
+        <img src="baner_17.webp" alt="DOLCE & GABBANA" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="77.webp"></div><h3>The One</h3><a href="https://wa.me/573134778625?text=Info: The One" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="81.webp"></div><h3>The One Gold</h3><a href="https://wa.me/573134778625?text=Info: The One Gold" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="78.webp"></div><h3>Pour Homme</h3><a href="https://wa.me/573134778625?text=Info: Pour Homme D&G" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="73.webp"></div><h3>Light Blue Men</h3><a href="https://wa.me/573134778625?text=Info: Light Blue Men" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="76.webp"></div><h3>Sun</h3><a href="https://wa.me/573134778625?text=Info: Sun D&G" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="79.webp"></div><h3>Love is Love</h3><a href="https://wa.me/573134778625?text=Info: Love is Love" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="75.webp"></div><h3>K</h3><a href="https://wa.me/573134778625?text=Info: K" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="80.webp"></div><h3>K Intense</h3><a href="https://wa.me/573134778625?text=Info: K Intense" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre coleccion" data-brand="jean paul gaultier">
+        <img src="baner_19.webp" alt="JEAN PAUL GAULTIER" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre coleccion"><div class="img-container"><img src="84.webp"></div><h3>Scandal</h3><a href="https://wa.me/573134778625?text=Info: Scandal" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="86.webp"></div><h3>Scandal Absolu</h3><a href="https://wa.me/573134778625?text=Info: Scandal Absolu" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="83.webp"></div><h3>Ultra Male</h3><a href="https://wa.me/573134778625?text=Info: Ultra Male" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="87.webp"></div><h3>Le Male</h3><a href="https://wa.me/573134778625?text=Info: Le Male" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="82.webp"></div><h3>Le Male Elixir</h3><a href="https://wa.me/573134778625?text=Info: Le Male Elixir" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="89.webp"></div><h3>Le Beau Parfum (Azul)</h3><a href="https://wa.me/573134778625?text=Info: Le Beau Parfum Azul" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="88.webp"></div><h3>Le Beau Parfum (Verde)</h3><a href="https://wa.me/573134778625?text=Info: Le Beau Parfum Verde" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="85.webp"></div><h3>Le Beau (Clásico)</h3><a href="https://wa.me/573134778625?text=Info: Le Beau" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="90.webp"></div><h3>Elixir Gold</h3><a href="https://wa.me/573134778625?text=Info: Elixir JPG" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group hombre" data-brand="lacoste">
+        <img src="baner_21.webp" alt="LACOSTE" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="91.webp"></div><h3>L12 12 Blanc</h3><a href="https://wa.me/573134778625?text=Info: L12 12 Blanc" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="92.webp"></div><h3>L12 12 Noir</h3><a href="https://wa.me/573134778625?text=Info: L12 12 Noir" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="93.webp"></div><h3>L12 12 Vert</h3><a href="https://wa.me/573134778625?text=Info: L12 12 Vert" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="95.webp"></div><h3>L12 12 Rouge</h3><a href="https://wa.me/573134778625?text=Info: L12 12 Rouge" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="94.webp"></div><h3>L12 12 Jaune</h3><a href="https://wa.me/573134778625?text=Info: L12 12 Jaune" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="96.webp"></div><h3>L12 12 Blue</h3><a href="https://wa.me/573134778625?text=Info: L12 12 Blue" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="98.webp"></div><h3>L12 12 Blanc Intense</h3><a href="https://wa.me/573134778625?text=Info: L12 12 Blanc Intense" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="100.webp"></div><h3>Lacoste Energized</h3><a href="https://wa.me/573134778625?text=Info: Lacoste Energized" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="99.webp"></div><h3>Lacoste Essential</h3><a href="https://wa.me/573134778625?text=Info: Lacoste Essential" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="97.webp"></div><h3>Lacoste Red</h3><a href="https://wa.me/573134778625?text=Info: Lacoste Red" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="101.webp"></div><h3>Lacoste Live</h3><a href="https://wa.me/573134778625?text=Info: Lacoste Live" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="paco rabanne">
+        <img src="baner_23.webp" alt="PACO RABANNE" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="103.webp"></div><h3>One Million</h3><a href="https://wa.me/573134778625?text=Info: One Million" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="102.webp"></div><h3>One Million Lucky</h3><a href="https://wa.me/573134778625?text=Info: One Million Lucky" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="108.webp"></div><h3>One Million Prive</h3><a href="https://wa.me/573134778625?text=Info: One Million Prive" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="104.webp"></div><h3>One Million Royal</h3><a href="https://wa.me/573134778625?text=Info: One Million Royal" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="105.webp"></div><h3>One Million Parfum</h3><a href="https://wa.me/573134778625?text=Info: One Million Parfum" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="106.webp"></div><h3>One Million Elixir</h3><a href="https://wa.me/573134778625?text=Info: One Million Elixir" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="109.webp"></div><h3>One Million Monopoly</h3><a href="https://wa.me/573134778625?text=Info: One Million Monopoly" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="107.webp"></div><h3>One Million Colector</h3><a href="https://wa.me/573134778625?text=Info: One Million Colector" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="110.webp"></div><h3>One Million Golden Oud</h3><a href="https://wa.me/573134778625?text=Info: One Million Golden Oud" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="111.webp"></div><h3>One Million Black</h3><a href="https://wa.me/573134778625?text=Info: One Million Black" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="112.webp"></div><h3>Invictus</h3><a href="https://wa.me/573134778625?text=Info: Invictus" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="114.webp"></div><h3>Invictus Intense</h3><a href="https://wa.me/573134778625?text=Info: Invictus Intense" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="115.webp"></div><h3>Invictus Legend</h3><a href="https://wa.me/573134778625?text=Info: Invictus Legend" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="113.webp"></div><h3>Invictus Victory</h3><a href="https://wa.me/573134778625?text=Info: Invictus Victory" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="116.webp"></div><h3>Invictus Victory Elixir</h3><a href="https://wa.me/573134778625?text=Info: Invictus Victory Elixir" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="117.webp"></div><h3>Invictus Onix</h3><a href="https://wa.me/573134778625?text=Info: Invictus Onix" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="118.webp"></div><h3>Invictus Acqua</h3><a href="https://wa.me/573134778625?text=Info: Invictus Acqua" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="119.webp"></div><h3>Invictus Parfum</h3><a href="https://wa.me/573134778625?text=Info: Invictus Parfum" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="121.webp"></div><h3>Invictus Platinum</h3><a href="https://wa.me/573134778625?text=Info: Invictus Platinum" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="124.webp"></div><h3>Phantom</h3><a href="https://wa.me/573134778625?text=Info: Phantom" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="120.webp"></div><h3>Phantom Intense</h3><a href="https://wa.me/573134778625?text=Info: Phantom Intense" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="123.webp"></div><h3>Phantom Parfum</h3><a href="https://wa.me/573134778625?text=Info: Phantom Parfum" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="127.webp"></div><h3>Black XS</h3><a href="https://wa.me/573134778625?text=Info: Black XS" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="125.webp"></div><h3>L´APHRODISIAQUE</h3><a href="https://wa.me/573134778625?text=Info: L´APHRODISIAQUE" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="126.webp"></div><h3>Black XS L´EXCCES</h3><a href="https://wa.me/573134778625?text=Info: Black XS L´EXCCES" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="122.webp"></div><h3>Pure XS</h3><a href="https://wa.me/573134778625?text=Info: Pure XS" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre coleccion" data-brand="chanel">
+        <img src="baner_25.webp" alt="CHANEL" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre coleccion"><div class="img-container"><img src="129.webp"></div><h3>Bleu De Chanel</h3><a href="https://wa.me/573134778625?text=Info: Bleu De Chanel" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="128.webp"></div><h3>Allure Homme Sport</h3><a href="https://wa.me/573134778625?text=Info: Allure Homme Sport" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group hombre" data-brand="ralph lauren">
+        <img src="baner_27.webp" alt="RALPH LAUREN" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="130.webp"></div><h3>Polo Red (Clásico)</h3><a href="https://wa.me/573134778625?text=Info: Polo Red" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="132.webp"></div><h3>Polo Red (Intense)</h3><a href="https://wa.me/573134778625?text=Info: Polo Red Intense" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="131.webp"></div><h3>Polo Blue</h3><a href="https://wa.me/573134778625?text=Info: Polo Blue" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="135.webp"></div><h3>Polo Black</h3><a href="https://wa.me/573134778625?text=Info: Polo Black" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="136.webp"></div><h3>Polo Double Black</h3><a href="https://wa.me/573134778625?text=Info: Polo Double Black" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="133.webp"></div><h3>Polo Sport</h3><a href="https://wa.me/573134778625?text=Info: Polo Sport" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="mont blanc">
+        <img src="baner_29.webp" alt="MONT BLANC" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="137.webp"></div><h3>Emblem</h3><a href="https://wa.me/573134778625?text=Info: Emblem" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="139.webp"></div><h3>Starwalker</h3><a href="https://wa.me/573134778625?text=Info: Starwalker" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="140.webp"></div><h3>Individuel</h3><a href="https://wa.me/573134778625?text=Info: Individuel" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="134.webp"></div><h3>Legend</h3><a href="https://wa.me/573134778625?text=Info: Legend" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="B3_ Legend Spirit.webp"></div><h3>Legend Spirit</h3><a href="https://wa.me/573134778625?text=Info: Legend Spirit" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="142.webp"></div><h3>Legend Red</h3><a href="https://wa.me/573134778625?text=Info: Legend Red" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="138.webp"></div><h3>Explorer</h3><a href="https://wa.me/573134778625?text=Info: Explorer" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="139.webp"></div><h3>Explorer Ultra Blue</h3><a href="https://wa.me/573134778625?text=Info: Explorer Ultra Blue" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="issey miyake">
+        <img src="baner_30.webp" alt="ISSEY MIYAKE" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="144.webp"></div><h3>Issey Miyake Men</h3><a href="https://wa.me/573134778625?text=Info: Issey Miyake Men" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="143.webp"></div><h3>Issey Miyake Nuit</h3><a href="https://wa.me/573134778625?text=Info: Issey Miyake Nuit" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre coleccion" data-brand="cartier">
+        <img src="baner_32.webp" alt="CARTIER" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre coleccion"><div class="img-container"><img src="145.webp"></div><h3>Declaration</h3><a href="https://wa.me/573134778625?text=Info: Declaration" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="146.webp"></div><h3>Santos Concentree</h3><a href="https://wa.me/573134778625?text=Info: Santos Concentree" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="147.webp"></div><h3>Eau Concentree</h3><a href="https://wa.me/573134778625?text=Info: Eau Concentree" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="gilles cantuel">
+        <img src="baner_34.webp" alt="GILLES CANTUEL" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="148.webp"></div><h3>Arsenal Gris</h3><a href="https://wa.me/573134778625?text=Info: Arsenal Gris" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="149.webp"></div><h3>Arsenal Dorada</h3><a href="https://wa.me/573134778625?text=Info: Arsenal Dorada" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="150.webp"></div><h3>Arsenal Negra</h3><a href="https://wa.me/573134778625?text=Info: Arsenal Negra" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre coleccion" data-brand="viktor & rolf">
+        <img src="baner_33.webp" alt="VIKTOR & ROLF" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre coleccion"><div class="img-container"><img src="151.webp"></div><h3>Spicebomb</h3><a href="https://wa.me/573134778625?text=Info: Spicebomb" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="152.webp"></div><h3>Eau De Parfum</h3><a href="https://wa.me/573134778625?text=Info: Eau Parfum" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="153.webp"></div><h3>Extreme</h3><a href="https://wa.me/573134778625?text=Info: Extreme" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group hombre" data-brand="versace">
+        <img src="baner_35.webp" alt="VERSACE" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="154.webp"></div><h3>Versace Eros</h3><a href="https://wa.me/573134778625?text=Info: Versace Eros" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="157.webp"></div><h3>Eros Flame</h3><a href="https://wa.me/573134778625?text=Info: Eros Flame" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="158.webp"></div><h3>Eros Energy</h3><a href="https://wa.me/573134778625?text=Info: Eros Energy" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="155.webp"></div><h3>Eau Fraiche</h3><a href="https://wa.me/573134778625?text=Info: Eau Fraiche" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="156.webp"></div><h3>Dylan Blue Men</h3><a href="https://wa.me/573134778625?text=Info: Dylan Blue Men" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="perry ellis">
+        <img src="baner_37.webp" alt="PERRY ELLIS" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="160.webp"></div><h3>360° Men</h3><a href="https://wa.me/573134778625?text=Info: 360° Men (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="159.webp"></div><h3>360° Red Men</h3><a href="https://wa.me/573134778625?text=Info: 360° Red Men (Línea AAA)" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="victorinox">
+        <img src="baner_39.webp" alt="VICTORINOX" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="167.webp"></div><h3>Swiss Army</h3><a href="https://wa.me/573134778625?text=Info: Swiss Army (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="168.webp"></div><h3>Classic</h3><a href="https://wa.me/573134778625?text=Info: Classic (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="161.webp"></div><h3>Altitude</h3><a href="https://wa.me/573134778625?text=Info: Altitude (Línea AAA)" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="diesel">
+        <img src="baner_40.webp" alt="DIESEL" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="162.webp"></div><h3>Only The Brave</h3><a href="https://wa.me/573134778625?text=Info: Only The Brave (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="163.webp"></div><h3>Diesel Tatto</h3><a href="https://wa.me/573134778625?text=Info: Diesel Tatto (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="164.webp"></div><h3>Iron Man</h3><a href="https://wa.me/573134778625?text=Info: Iron Man (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="165.webp"></div><h3>Diesel Spirit Intense</h3><a href="https://wa.me/573134778625?text=Info: Diesel Spirit Intense (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="166.webp"></div><h3>Successful Living</h3><a href="https://wa.me/573134778625?text=Info: Successful Living (Línea AAA)" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="giorgio armani">
+        <img src="baner_41.webp" alt="GIORGIO ARMANI" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="169.webp"></div><h3>Acqua Di Gio</h3><a href="https://wa.me/573134778625?text=Info: Acqua Di Gio (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="171.webp"></div><h3>Profumo</h3><a href="https://wa.me/573134778625?text=Info: Profumo (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="170.webp"></div><h3>Profondo</h3><a href="https://wa.me/573134778625?text=Info: Profondo (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="176.webp"></div><h3>Stronger With You</h3><a href="https://wa.me/573134778625?text=Info: Stronger With You (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="177.webp"></div><h3>Stronger Intensely</h3><a href="https://wa.me/573134778625?text=Info: Stronger Intensely (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="172.webp"></div><h3>Armani Code</h3><a href="https://wa.me/573134778625?text=Info: Armani Code (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="175.webp"></div><h3>Profumo Code</h3><a href="https://wa.me/573134778625?text=Info: Profumo Code (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="173.webp"></div><h3>A-List</h3><a href="https://wa.me/573134778625?text=Info: A-List (Línea AAA)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="174.webp"></div><h3>Profumo Parfum</h3><a href="https://wa.me/573134778625?text=Info: Profumo Parfum (Línea AAA)" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group hombre" data-brand="clinique">
+        <img src="baner_43.webp" alt="CLINIQUE" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre">
+                <div class="img-container"><img src="178.webp" alt="Clinique Happy"></div>
+                <h3>Clinique Happy</h3>
+                <a href="https://wa.me/573134778625?text=Info: Clinique Happy" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="gucci">
+        <img src="baner_45.webp" alt="GUCCI" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre">
+                <div class="img-container"><img src="182.webp" alt="Gucci Guilty"></div>
+                <h3>Gucci Guilty</h3>
+                <a href="https://wa.me/573134778625?text=Info: Gucci Guilty" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="moschino">
+        <img src="baner_47.webp" alt="MOSCHINO" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre">
+                <div class="img-container"><img src="183.webp" alt="Toy Boy"></div>
+                <h3>Toy Boy</h3>
+                <a href="https://wa.me/573134778625?text=Info: Toy Boy" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="paris hilton">
+        <img src="baner_49.webp" alt="PARIS HILTON" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre">
+                <div class="img-container"><img src="184.webp" alt="Paris Men"></div>
+                <h3>Paris Men</h3>
+                <a href="https://wa.me/573134778625?text=Info: Paris Men" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="nautica">
+        <img src="baner_51.webp" alt="NAUTICA" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre">
+                <div class="img-container"><img src="181.webp" alt="Nautica Classic"></div>
+                <h3>Classic</h3>
+                <a href="https://wa.me/573134778625?text=Info: Classic Nautica" class="price-link">WHATSAPP</a>
+            </div>
+            <div class="card hombre">
+                <div class="img-container"><img src="179.webp" alt="Nautica Voyage"></div>
+                <h3>Nautica Voyage</h3>
+                <a href="https://wa.me/573134778625?text=Info: Nautica Voyage" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="tommy hilfiger">
+        <img src="baner_52.webp" alt="TOMMY HILFIGER" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre">
+                <div class="img-container"><img src="180.webp" alt="Tommy Men"></div>
+                <h3>Tommy Men</h3>
+                <a href="https://wa.me/573134778625?text=Info: Tommy Men" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="ferrari">
+        <img src="baner_54.webp" alt="FERRARI" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre">
+                <div class="img-container"><img src="185.webp" alt="Ferrari Black"></div>
+                <h3>Ferrari Black</h3>
+                <a href="https://wa.me/573134778625?text=Info: Ferrari Black" class="price-link">WHATSAPP</a>
+            </div>
+            <div class="card hombre">
+                <div class="img-container"><img src="186.webp" alt="Ferrari Red"></div>
+                <h3>Ferrari Red</h3>
+                <a href="https://wa.me/573134778625?text=Info: Ferrari Red" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+<div class="brand-group hombre coleccion" data-brand="le labo">
+        <img src="baner_55.webp" alt="LE LABO" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre coleccion"><div class="img-container"><img src="187.webp"></div><h3>Santal 33</h3><a href="https://wa.me/573134778625?text=Info: Santal 33" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="188.webp"></div><h3>Bergamote 22</h3><a href="https://wa.me/573134778625?text=Info: Bergamote 22" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="190.webp"></div><h3>Stallion 53</h3><a href="https://wa.me/573134778625?text=Info: Stallion 53" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="azzaro">
+        <img src="baner_56.webp" alt="AZZARO" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="--.webp"></div><h3>Pour Homme</h3><a href="https://wa.me/573134778625?text=Info: Pour Homme Azzaro" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="191.webp"></div><h3>Wanted</h3><a href="https://wa.me/573134778625?text=Info: Wanted" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="192.webp"></div><h3>Wanted By Night</h3><a href="https://wa.me/573134778625?text=Info: Wanted By Night" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="193.webp"></div><h3>Elixir</h3><a href="https://wa.me/573134778625?text=Info: Elixir Azzaro" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre coleccion" data-brand="mancera">
+        <img src="baner_57.webp" alt="MANCERA" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre coleccion"><div class="img-container"><img src="189.webp"></div><h3>Wind Wood</h3><a href="https://wa.me/573134778625?text=Info: Wind Wood" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="189.webp"></div><h3>Cedrat Boise</h3><a href="https://wa.me/573134778625?text=Info: Cedrat Boise" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="189.webp"></div><h3>Coco Vanille</h3><a href="https://wa.me/573134778625?text=Info: Coco Vainille" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="yves saint laurent">
+        <img src="baner_58.webp" alt="YVES SAINT LAURENT" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="194.webp"></div><h3>Y</h3><a href="https://wa.me/573134778625?text=Info: Y (YSL)" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="198.webp"></div><h3>Y Eau Fraiche</h3><a href="https://wa.me/573134778625?text=Info: Y Eau Fraiche" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="195.webp"></div><h3>La Nuit De l'Homme</h3><a href="https://wa.me/573134778625?text=Info: La Nuit De l'Homme" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre" data-brand="valentino">
+        <img src="baner_60.webp" alt="VALENTINO" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre"><div class="img-container"><img src="196.webp"></div><h3>Uomo</h3><a href="https://wa.me/573134778625?text=Info: Uomo Valentino" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre"><div class="img-container"><img src="197.webp"></div><h3>Born in Roma Men</h3><a href="https://wa.me/573134778625?text=Info: Born in Roma Men" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre coleccion" data-brand="louis vuitton">
+        <img src="baner_62.webp" alt="LOUIS VUITTON" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre coleccion"><div class="img-container"><img src="199.webp"></div><h3>Ombre Nomade</h3><a href="https://wa.me/573134778625?text=Info: Ombre Nomade" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="202.webp"></div><h3>California Dreams</h3><a href="https://wa.me/573134778625?text=Info: California Dreams" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="204.webp"></div><h3>Le Jour Se Leve</h3><a href="https://wa.me/573134778625?text=Info: Le Jour Se Leve" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="200.webp"></div><h3>Mille Feux</h3><a href="https://wa.me/573134778625?text=Info: Mille Feux" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="201.webp"></div><h3>Apogee</h3><a href="https://wa.me/573134778625?text=Info: Apogee" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="203.webp"></div><h3>Contre Moi</h3><a href="https://wa.me/573134778625?text=Info: Contre Moi" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group hombre coleccion" data-brand="tom ford">
+        <img src="baner_63.webp" alt="TOM FORD" class="brand-banner">
+        <div class="grid">
+            <div class="card hombre coleccion"><div class="img-container"><img src="205.webp"></div><h3>Tobacco Vanille</h3><a href="https://wa.me/573134778625?text=Info: Tobacco Vanille" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="206.webp"></div><h3>Cherry Smoke</h3><a href="https://wa.me/573134778625?text=Info: Cherry Smoke" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="208.webp"></div><h3>Oud Wood</h3><a href="https://wa.me/573134778625?text=Info: Oud Wood" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="207.webp"></div><h3>Lost Cherry</h3><a href="https://wa.me/573134778625?text=Info: Lost Cherry" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="212.webp"></div><h3>White Suede</h3><a href="https://wa.me/573134778625?text=Info: White Suede" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="209.webp"></div><h3>Neroli Portofino</h3><a href="https://wa.me/573134778625?text=Info: Neroli Portofino" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="210.webp"></div><h3>Ombre Leather</h3><a href="https://wa.me/573134778625?text=Info: Ombre Leather" class="price-link">WHATSAPP</a></div>
+            <div class="card hombre coleccion"><div class="img-container"><img src="211.webp"></div><h3>Black Orchid</h3><a href="https://wa.me/573134778625?text=Info: Black Orchid" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group arabes unisex" data-brand="ilmin">
+        <img src="baner_64.webp" alt="ILMIN" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes unisex"><div class="img-container"><img src="214.webp"></div><h3>Il Kakuno</h3><a href="https://wa.me/573134778625?text=Info: Ol Kakuno" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="216.webp"></div><h3>Il Roso</h3><a href="https://wa.me/573134778625?text=Info: Il Roso" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="215.webp"></div><h3>Monastery</h3><a href="https://wa.me/573134778625?text=Info: Monastery" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="218.webp"></div><h3>Il Femme</h3><a href="https://wa.me/573134778625?text=Info: Il Femme" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="220.webp"></div><h3>Il Ego</h3><a href="https://wa.me/573134778625?text=Info: Il Ego" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="215.webp"></div><h3>Il Azzurro</h3><a href="https://wa.me/573134778625?text=Info: Il Azzurro" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="221.webp"></div><h3>Il Oomph</h3><a href="https://wa.me/573134778625?text=Info: Il Oompph" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="219.webp"></div><h3>Il Dolce</h3><a href="https://wa.me/573134778625?text=Info: Il Dolce" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group arabes unisex" data-brand="orientica">
+        <img src="baner_65.webp" alt="ORIENTICA" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes unisex"><div class="img-container"><img src="225.webp"></div><h3>Amber Rouge</h3><a href="https://wa.me/573134778625?text=Info: Amber Rouge" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="223.webp"></div><h3>Royal Amber</h3><a href="https://wa.me/573134778625?text=Info: Royal Amber" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="222.webp"></div><h3>Oud Saffron</h3><a href="https://wa.me/573134778625?text=Info: Oud Saffron" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="224.webp"></div><h3>Amber Noir</h3><a href="https://wa.me/573134778625?text=Info: Amer Noir" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="226.webp"></div><h3>Velvet Gold</h3><a href="https://wa.me/573134778625?text=Info: Velvet Gold" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="228.webp"></div><h3>Royal Blue</h3><a href="https://wa.me/573134778625?text=Info: Royal Blue" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="227.webp"></div><h3>Azure Fantasy</h3><a href="https://wa.me/573134778625?text=Info: Azure Fantasy" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group arabes" data-brand="lattafa">
+        <img src="baner_66.webp" alt="LATTAFA" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes mujer"><div class="img-container"><img src="229.webp"></div><h3>Noble Blush</h3><a href="https://wa.me/573134778625?text=Info: Noble Blush" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre unisex"><div class="img-container"><img src="230.webp"></div><h3>Bade´e Oud For Glory</h3><a href="https://wa.me/573134778625?text=Info: Oud For Glory" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre unisex"><div class="img-container"><img src="231.webp"></div><h3>Honor & Glory</h3><a href="https://wa.me/573134778625?text=Info: Honor & Glory" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre unisex"><div class="img-container"><img src="232.webp"></div><h3>Bade´e Al Oud Sublime</h3><a href="https://wa.me/573134778625?text=Info: Oud Sublime" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre unisex"><div class="img-container"><img src="233.webp"></div><h3>Bade´e Al Oud Amethyst</h3><a href="https://wa.me/573134778625?text=Info: Oud Amethyst" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="234.webp"></div><h3>Yara (Rosada)</h3><a href="https://wa.me/573134778625?text=Info: Yara" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="236.webp"></div><h3>Yara Moi (Blanca)</h3><a href="https://wa.me/573134778625?text=Info: Yara Moi" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="235.webp"></div><h3>Yara Tous (Naranja)</h3><a href="https://wa.me/573134778625?text=Info: Yara Tous" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="237.webp"></div><h3>Yara Candy</h3><a href="https://wa.me/573134778625?text=Info: Yara Candy" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="239.webp"></div><h3>Asad Men</h3><a href="https://wa.me/573134778625?text=Info: Asad Men" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="238.webp"></div><h3>Asad Zanzibar</h3><a href="https://wa.me/573134778625?text=Info: Asad Zanzibar" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="240.webp"></div><h3>Mayar</h3><a href="https://wa.me/573134778625?text=Info: Mayar" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="241.webp"></div><h3>Mayar Natural Intense</h3><a href="https://wa.me/573134778625?text=Info: Mayar Natural Intense" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre unisex"><div class="img-container"><img src="242.webp"></div><h3>Khamrah</h3><a href="https://wa.me/573134778625?text=Info: Khamrah" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre unisex"><div class="img-container"><img src="243.webp"></div><h3>Khamrah Qahwa</h3><a href="https://wa.me/573134778625?text=Info: Khamrah Qahwa" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="246.webp"></div><h3>Haya</h3><a href="https://wa.me/573134778625?text=Info: Haya" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="245.webp"></div><h3>Azraq Emman</h3><a href="https://wa.me/573134778625?text=Info: Azraq Emman" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre unisex"><div class="img-container"><img src="248.webp"></div><h3>Maahir</h3><a href="https://wa.me/573134778625?text=Info: Maahir" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre unisex"><div class="img-container"><img src="247.webp"></div><h3>Maahir Black</h3><a href="https://wa.me/573134778625?text=Info: Maahir Black" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre unisex"><div class="img-container"><img src="244.webp"></div><h3>Maahir Legacy</h3><a href="https://wa.me/573134778625?text=Info: Maahir Legacy" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="250.webp"></div><h3>Ajwad</h3><a href="https://wa.me/573134778625?text=Info: Ajwad" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="249.webp"></div><h3>Ajwad Pink</h3><a href="https://wa.me/573134778625?text=Info: Ajwad Pink" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="252.webp"></div><h3>Chala Zayed</h3><a href="https://wa.me/573134778625?text=Info: Chala Zayed" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="251.webp"></div><h3>Shaheen</h3><a href="https://wa.me/573134778625?text=Info: Shaheen" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="254.webp"></div><h3>Fakhar Rose</h3><a href="https://wa.me/573134778625?text=Info: Fakhar Rose" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="253.webp"></div><h3>Fakhar Black</h3><a href="https://wa.me/573134778625?text=Info: Fakhar Black" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="256.webp"></div><h3>Hayati Gold</h3><a href="https://wa.me/573134778625?text=Info: Hayati Gold" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="255.webp"></div><h3>Hayati Florence</h3><a href="https://wa.me/573134778625?text=Info: Hayati Florence" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="258.webp"></div><h3>Al Malery</h3><a href="https://wa.me/573134778625?text=Info: Al Malery" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="257.webp"></div><h3>Hayati Black</h3><a href="https://wa.me/573134778625?text=Info: Hayati Black" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group arabes" data-brand="rasasi">
+        <img src="baner_67.webp" alt="RASASI" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes mujer"><div class="img-container"><img src="260.webp"></div><h3>Oud Rose</h3><a href="https://wa.me/573134778625?text=Info: Oud Rose" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="261.webp"></div><h3>Hawas For Her</h3><a href="https://wa.me/573134778625?text=Info: Hawas For Her" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group arabes coleccion" data-brand="initio">
+        <img src="baner_68.webp" alt="INITIO" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes coleccion hombre"><div class="img-container"><img src="259.webp"></div><h3>INITIO</h3><a href="https://wa.me/573134778625?text=Info: INITIO" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group arabes unisex" data-brand="afnan">
+        <img src="baner_69.webp" alt="AFNAN" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes hombre"><div class="img-container"><img src="263.webp"></div><h3>9 PM Men</h3><a href="https://wa.me/573134778625?text=Info: 9 PM Men" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="264.webp"></div><h3>9AM Dive</h3><a href="https://wa.me/573134778625?text=Info: 9AM Dive" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="265.webp"></div><h3>9AM Pour Femme</h3><a href="https://wa.me/573134778625?text=Info: 9AM Pour Femme" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="266.webp"></div><h3>9AM Pour Femme (Variante)</h3><a href="https://wa.me/573134778625?text=Info: 9AM Pour Femme Alt" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group arabes" data-brand="armaf">
+        <img src="baner_70.webp" alt="ARMAF" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes mujer"><div class="img-container"><img src="267.webp"></div><h3>Club De Nuit Woman</h3><a href="https://wa.me/573134778625?text=Info: Club De Nuit Woman" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes mujer"><div class="img-container"><img src="269.webp"></div><h3>Club Intense Woman</h3><a href="https://wa.me/573134778625?text=Info: Club Intense Woman" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="268.webp"></div><h3>Club De Nuit Intense</h3><a href="https://wa.me/573134778625?text=Info: Club De Nuit Intense" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="270.webp"></div><h3>Odyssey Mandarin Sky</h3><a href="https://wa.me/573134778625?text=Info: Odyssey Mandarin sky" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group arabes unisex" data-brand="al haramain">
+        <img src="baner_72.webp" alt="AL HARAMAIN" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes mujer"><div class="img-container"><img src="275.webp"></div><h3>Amber Oud Rouge</h3><a href="https://wa.me/573134778625?text=Info: Amber Oud Rouge" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex"><div class="img-container"><img src="276.webp"></div><h3>Amber Oud Gold</h3><a href="https://wa.me/573134778625?text=Info: Amber Oud Gold" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="274.webp"></div><h3>Private Edition</h3><a href="https://wa.me/573134778625?text=Info: Private Edition Haramain" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group arabes coleccion" data-brand="bharara">
+        <img src="baner_73.webp" alt="BHARARA" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes coleccion hombre"><div class="img-container"><img src="279.webp"></div><h3>Bharara Parfum</h3><a href="https://wa.me/573134778625?text=Info: Bharara Parfum" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes coleccion hombre"><div class="img-container"><img src="277.webp"></div><h3>King Men</h3><a href="https://wa.me/573134778625?text=Info: King Men" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes coleccion unisex"><div class="img-container"><img src="278.webp"></div><h3>Bharara Niche</h3><a href="https://wa.me/573134778625?text=Info: Bharara Niche" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes coleccion hombre"><div class="img-container"><img src="B6_ Bharara Double Blue.webp"></div><h3>Bharara Double Blue</h3><a href="https://wa.me/573134778625?text=Info: Bharara Double Blue" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes coleccion hombre"><div class="img-container"><img src="280.webp"></div><h3>Bharara Onyx</h3><a href="https://wa.me/573134778625?text=Info: Bharara Onix" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes coleccion hombre"><div class="img-container"><img src="286.webp"></div><h3>Viking</h3><a href="https://wa.me/573134778625?text=Info: Bharara Viking" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes coleccion hombre"><div class="img-container"><img src="285.webp"></div><h3>Beirut</h3><a href="https://wa.me/573134778625?text=Info: Bharara Beirut" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes coleccion hombre"><div class="img-container"><img src="283.webp"></div><h3>Cairo</h3><a href="https://wa.me/573134778625?text=Info: Bharara Cairo" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes coleccion hombre"><div class="img-container"><img src="284.webp"></div><h3>Kashmir</h3><a href="https://wa.me/573134778625?text=Info: Bharara Kashmir" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+   <div class="brand-group mujer arabes" data-brand="bharara">
+        <img src="baner_74.webp" alt="BHARARA DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer arabes"><div class="img-container"><img src="281.webp"></div><h3>Bharara Rosé</h3><a href="https://wa.me/573134778625?text=Info: Bharara Rosé" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer arabes"><div class="img-container"><img src="282.webp"></div><h3>Bharara Niche Femme</h3><a href="https://wa.me/573134778625?text=Info: Bharara Niche Femme" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>         
+    <div class="brand-group arabes" data-brand="nusuk">
+        <img src="baner_75.webp" alt="ANA AL AWWAL" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes hombre"><div class="img-container"><img src="289.webp"></div><h3>Nusuk Blanc</h3><a href="https://wa.me/573134778625?text=Info: Nusuk Blanc" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="290.webp"></div><h3>Nusuk Blue</h3><a href="https://wa.me/573134778625?text=Info: Nusuk Blue" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="287.webp"></div><h3>Nusuk Black</h3><a href="https://wa.me/573134778625?text=Info: Nusuk Black" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes hombre"><div class="img-container"><img src="288.webp"></div><h3>Nusuk Coffee</h3><a href="https://wa.me/573134778625?text=Info: Nusuk Coffee" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group mujer" data-brand="ariana grande">
+        <img src="baner_76.webp" alt="ARIANA GRANDE" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="293.webp"></div><h3>Sweet Like Candy</h3><a href="https://wa.me/573134778625?text=Info: Sweet Like Candy" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="295.webp"></div><h3>Sweet Candy Red</h3><a href="https://wa.me/573134778625?text=Info: Sweet Candy Red" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="294.webp"></div><h3>Sweet Candy Blue</h3><a href="https://wa.me/573134778625?text=Info: Sweet Candy Blue" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="296.webp"></div><h3>R.E.M</h3><a href="https://wa.me/573134778625?text=Info: R.E.M" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="292.webp"></div><h3>Thank U Next</h3><a href="https://wa.me/573134778625?text=Info: Thank U Next" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="291.webp"></div><h3>Thank U Next 2.0</h3><a href="https://wa.me/573134778625?text=Info: Thank U Next 2.0" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="301.webp"></div><h3>God Is Woman</h3><a href="https://wa.me/573134778625?text=Info: God Is Woman" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="B7_ Ari.webp"></div><h3>Ari</h3><a href="https://wa.me/573134778625?text=Info: Ari Ariana Grande" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="299.webp"></div><h3>Cloud</h3><a href="https://wa.me/573134778625?text=Info: Cloud" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="298.webp"></div><h3>Cloud 2.0</h3><a href="https://wa.me/573134778625?text=Info: Cloud 2.0" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="302.webp"></div><h3>Cloud Pink</h3><a href="https://wa.me/573134778625?text=Info: Cloud Pink" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="300.webp"></div><h3>Moon Light</h3><a href="https://wa.me/573134778625?text=Info: Moon Light" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="297.webp"></div><h3>Mood Blush</h3><a href="https://wa.me/573134778625?text=Info: Mood Blush" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="303.webp"></div><h3>Mod Vanilla</h3><a href="https://wa.me/573134778625?text=Info: Mod Vanilla" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="burberry">
+        <img src="baner_77.webp" alt="BURBERRY" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="2.webp"></div><h3>Burberry</h3><a href="https://wa.me/573134778625?text=Info: Burberry Tradicional" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="1.webp"></div><h3>MY Burberry</h3><a href="https://wa.me/573134778625?text=Info: MY Burberry" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="3.webp"></div><h3>My Burberry Blush</h3><a href="https://wa.me/573134778625?text=Info: My Burberry Blush" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="4.webp"></div><h3>My Burberry Black</h3><a href="https://wa.me/573134778625?text=Info: My Burberry Black" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="4.webp"></div><h3>Burberry Her</h3><a href="https://wa.me/573134778625?text=Info: Burberry Her" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="4.webp"></div><h3>Burberry Elixir</h3><a href="https://wa.me/573134778625?text=Info: Burberry Elixir" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="bvlgari">
+        <img src="baner_78.webp" alt="BVLGARI" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_1.webp"></div><h3>Omnia Coral 65 ML</h3><a href="https://wa.me/573134778625?text=Info: Omnia Coral 65ml" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_2.webp"></div><h3>Omnia Crystaline 65 ML</h3><a href="https://wa.me/573134778625?text=Info: Omnia Crystaline 65ml" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_4.webp"></div><h3>Omnia Amethyste 65 ML</h3><a href="https://wa.me/573134778625?text=Info: Omnia Amethyste 65ml" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_5.webp"></div><h3>Omnia Paraiba 65 ML</h3><a href="https://wa.me/573134778625?text=Info: Omnia Paraiba 65ml" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_3.webp"></div><h3>Omnia Pink Sapphire 65 ML</h3><a href="https://wa.me/573134778625?text=Info: Omnia Pink Sapphire 65ml" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_6.webp"></div><h3>Omnia Katrantzou 65 ML</h3><a href="https://wa.me/573134778625?text=Info: Omnia Katrantzou 65ml" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_7.webp"></div><h3>Omnia Coral 100 ML</h3><a href="https://wa.me/573134778625?text=Info: Omnia Coral 100ml" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_9.webp"></div><h3>Omnia Crystaline 100 ML</h3><a href="https://wa.me/573134778625?text=Info: Omnia Crystaline 100ml" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_10.webp"></div><h3>Omnia Amethyste 100 ML</h3><a href="https://wa.me/573134778625?text=Info: Omnia Amethyste 100ml" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_8.webp"></div><h3>Goldea</h3><a href="https://wa.me/573134778625?text=Info: Goldea" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="carolina herrera">
+        <img src="baner_79.webp" alt="CAROLINA HERRERA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_11.webp"></div><h3>Good Girl</h3><a href="https://wa.me/573134778625?text=Info: Good Girl" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_14.webp"></div><h3>Fantastic Pink</h3><a href="https://wa.me/573134778625?text=Info: Fantastic Pink" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_12.webp"></div><h3>Good Girl Supreme</h3><a href="https://wa.me/573134778625?text=Info: Good Girl Supreme" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_13.webp"></div><h3>Very Good Girl</h3><a href="https://wa.me/573134778625?text=Info: Very Good Girl" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_17.webp"></div><h3>Good Girl Legere</h3><a href="https://wa.me/573134778625?text=Info: Good Girl Legere" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_15.webp"></div><h3>Good Girl Dot Drama</h3><a href="https://wa.me/573134778625?text=Info: Good Girl Dot Drama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_16.webp"></div><h3>Dazling Garden</h3><a href="https://wa.me/573134778625?text=Info: Dazling Garden" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="B8_ Good Girl Blush.webp"></div><h3>Good Girl Blush</h3><a href="https://wa.me/573134778625?text=Info: Good Girl Blush 1" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_19.webp"></div><h3>Good Girl Blush</h3><a href="https://wa.me/573134778625?text=Info: Good Girl Blush 2" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_18.webp"></div><h3>Glorious Gold</h3><a href="https://wa.me/573134778625?text=Info: Glorious Gold" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_21.webp"></div><h3>Good Girl Fantasy</h3><a href="https://wa.me/573134778625?text=Info: Good Girl Fantasy" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_20.webp"></div><h3>Good Girl Hair Mist</h3><a href="https://wa.me/573134778625?text=Info: Good Girl Hair Mist" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_25.webp"></div><h3>212 Tradicional</h3><a href="https://wa.me/573134778625?text=Info: 212 Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_22.webp"></div><h3>212 VIP</h3><a href="https://wa.me/573134778625?text=Info: 212 VIP Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_24.webp"></div><h3>212 VIP Rose</h3><a href="https://wa.me/573134778625?text=Info: 212 VIP Rose" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_26.webp"></div><h3>212 VIP Red</h3><a href="https://wa.me/573134778625?text=Info: 212 VIP Red Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_23.webp"></div><h3>212 Sexy</h3><a href="https://wa.me/573134778625?text=Info: 212 Sexy Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_27.webp"></div><h3>212 Wild Party</h3><a href="https://wa.me/573134778625?text=Info: 212 Wild Party Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_28.webp"></div><h3>212 Wins</h3><a href="https://wa.me/573134778625?text=Info: 212 Wins Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_33.webp"></div><h3>I Love NY</h3><a href="https://wa.me/573134778625?text=Info: 212 I Love NY Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_30.webp"></div><h3>CH</h3><a href="https://wa.me/573134778625?text=Info: CH Dama 1" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_31.webp"></div><h3>CH</h3><a href="https://wa.me/573134778625?text=Info: CH Dama 2" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_29.webp"></div><h3>212 Heroes</h3><a href="https://wa.me/573134778625?text=Info: 212 Heroes Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_32.webp"></div><h3>Laundry Colector Ed</h3><a href="https://wa.me/573134778625?text=Info: Laundry Colector Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_39.webp"></div><h3>CH L´eau</h3><a href="https://wa.me/573134778625?text=Info: CH L´eau" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_34.webp"></div><h3>Alería Vivir</h3><a href="https://wa.me/573134778625?text=Info: Alería Vivir" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_35.webp"></div><h3>Mad World</h3><a href="https://wa.me/573134778625?text=Info: Mad World" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_38.webp"></div><h3>Me First</h3><a href="https://wa.me/573134778625?text=Info: Me First" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_36.webp"></div><h3>Fearless Fabulous</h3><a href="https://wa.me/573134778625?text=Info: Fearless Fabulous" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_37.webp"></div><h3>Call Me Darling</h3><a href="https://wa.me/573134778625?text=Info: Call Me Darling" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group mujer coleccion" data-brand="chanel">
+        <img src="baner_26.webp" alt="CHANEL" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_42.webp"></div><h3>Chance Chanel</h3><a href="https://wa.me/573134778625?text=Info: Chance Chanel" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_44.webp"></div><h3>Chance Tendre</h3><a href="https://wa.me/573134778625?text=Info: Chance Tendre" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_43.webp"></div><h3>Chance Fraíche</h3><a href="https://wa.me/573134778625?text=Info: Chance Fraíche" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_41.webp"></div><h3>Gabrielle</h3><a href="https://wa.me/573134778625?text=Info: Gabrielle Chanel" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_47.webp"></div><h3>Coco Noir</h3><a href="https://wa.me/573134778625?text=Info: Coco Noir" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_40.webp"></div><h3>Coco Made Moiselle</h3><a href="https://wa.me/573134778625?text=Info: Coco Made Moiselle" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_45.webp"></div><h3>Chanel N° 5</h3><a href="https://wa.me/573134778625?text=Info: Chanel N° 5" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="calvin klein">
+        <img src="baner_11.webp" alt="CALVIN KLEIN" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_48.webp"></div><h3>CK In2u</h3><a href="https://wa.me/573134778625?text=Info: CK In2u Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_51.webp"></div><h3>Escape</h3><a href="https://wa.me/573134778625?text=Info: Escape Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_46.webp"></div><h3>Euphoria</h3><a href="https://wa.me/573134778625?text=Info: Euphoria Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_49.webp"></div><h3>Liquid Gold</h3><a href="https://wa.me/573134778625?text=Info: Euphoria Liquid Gold" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer coleccion" data-brand="creed">
+        <img src="baner_14.webp" alt="CREED" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_53.webp"></div><h3>Love In White</h3><a href="https://wa.me/573134778625?text=Info: Love In White" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="B9_ Love In Black.webp"></div><h3>Love In Black</h3><a href="https://wa.me/573134778625?text=Info: Love In Black" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_50.webp"></div><h3>Creed Adventus</h3><a href="https://wa.me/573134778625?text=Info: Creed Adventus Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_52.webp"></div><h3>Spring Flower</h3><a href="https://wa.me/573134778625?text=Info: Spring Flower" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer coleccion" data-brand="christian dior">
+        <img src="baner_16.webp" alt="CHRISTIAN DIOR" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_55.webp"></div><h3>J´adore</h3><a href="https://wa.me/573134778625?text=Info: J´adore" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_56.webp"></div><h3>J´adore Black</h3><a href="https://wa.me/573134778625?text=Info: J´adore Black" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_54.webp"></div><h3>J´adore Infinissime</h3><a href="https://wa.me/573134778625?text=Info: J´adore Infinissime" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_58.webp"></div><h3>Dior Addict</h3><a href="https://wa.me/573134778625?text=Info: Dior Addict" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_57.webp"></div><h3>Miss Dior</h3><a href="https://wa.me/573134778625?text=Info: Miss Dior" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_60.webp"></div><h3>Absolutely Blooming</h3><a href="https://wa.me/573134778625?text=Info: Absolutely Blooming" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_59.webp"></div><h3>Blooming Bouquet</h3><a href="https://wa.me/573134778625?text=Info: Blooming Bouquet" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_61.webp"></div><h3>Joy</h3><a href="https://wa.me/573134778625?text=Info: Joy Dior" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="dolce & gabbana">
+        <img src="baner_18.webp" alt="DOLCE & GABBANA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_64.webp"></div><h3>The One</h3><a href="https://wa.me/573134778625?text=Info: The One Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_62.webp"></div><h3>Rose The One</h3><a href="https://wa.me/573134778625?text=Info: Rose The One" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_65.webp"></div><h3>The One Essence</h3><a href="https://wa.me/573134778625?text=Info: The One Essence" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_66.webp"></div><h3>The Only One</h3><a href="https://wa.me/573134778625?text=Info: The Only One" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_67.webp"></div><h3>Light Blue</h3><a href="https://wa.me/573134778625?text=Info: Light Blue Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_63.webp"></div><h3>Light Blue Intense</h3><a href="https://wa.me/573134778625?text=Info: Light Blue Intense Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_68.webp"></div><h3>Love Is Love</h3><a href="https://wa.me/573134778625?text=Info: Love Is Love Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="B10_ Italian Love.webp"></div><h3>Italian Love</h3><a href="https://wa.me/573134778625?text=Info: Italian Love Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_70.webp"></div><h3>Summers Vibes</h3><a href="https://wa.me/573134778625?text=Info: Summers Vibes Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_69.webp"></div><h3>3 L´emperatriz</h3><a href="https://wa.me/573134778625?text=Info: 3 L´emperatriz" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group mujer" data-brand="sofia vergara">
+        <img src="banner-parfums-de-CAROLINA HERRERA.webp" alt="SOFIA VERGARA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_72.webp"></div><h3>SOFIA</h3><a href="https://wa.me/573134778625?text=Info: SOFIA (Sofia Vergara)" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="ralph lauren">
+        <img src="baner_28.webp" alt="RALPH LAUREN" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_75.webp"></div><h3>Pony 2</h3><a href="https://wa.me/573134778625?text=Info: Pony 2 Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_71.webp"></div><h3>Ralph</h3><a href="https://wa.me/573134778625?text=Info: Ralph (Azul)" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer coleccion" data-brand="baccarat">
+        <img src="baner_80.webp" alt="BACCARAT" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_73.webp"></div><h3>Baccarat 540</h3><a href="https://wa.me/573134778625?text=Info: Baccarat 540" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_74.webp"></div><h3>Baccarat 540 Rouge</h3><a href="https://wa.me/573134778625?text=Info: Baccarat 540 Rouge" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="giorgio armani">
+        <img src="baner_42.webp" alt="GIORGIO ARMANI" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_78.webp"></div><h3>Sí</h3><a href="https://wa.me/573134778625?text=Info: Sí Armani" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_79.webp"></div><h3>My Way</h3><a href="https://wa.me/573134778625?text=Info: My Way Armani" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_80.webp"></div><h3>Acqua Di Gioia</h3><a href="https://wa.me/573134778625?text=Info: Acqua Di Gioia" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="katy perry">
+        <img src="baner_81.webp" alt="KATY PERRY" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_77.webp"></div><h3>Meow</h3><a href="https://wa.me/573134778625?text=Info: Meow Katy Perry" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_76.webp"></div><h3>Purrs</h3><a href="https://wa.me/573134778625?text=Info: Purrs Katy Perry" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="lacoste">
+        <img src="baner_22.webp" alt="LACOSTE" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_85.webp"></div><h3>Touch Of Pink</h3><a href="https://wa.me/573134778625?text=Info: Touch Of Pink" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_83.webp"></div><h3>Lacoste Sparkling</h3><a href="https://wa.me/573134778625?text=Info: Lacoste Sparkling" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_84.webp"></div><h3>Lacoste Natural</h3><a href="https://wa.me/573134778625?text=Info: Lacoste Natural" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_81.webp"></div><h3>Lacoste Elegant</h3><a href="https://wa.me/573134778625?text=Info: Lacoste Elegant" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_82.webp"></div><h3>L12 12 Rosé Eau Fraiche</h3><a href="https://wa.me/573134778625?text=Info: L12 12 Rosé Fraiche" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_86.webp"></div><h3>L12 12 Rosé Eau Intense</h3><a href="https://wa.me/573134778625?text=Info: L12 12 Rosé Intense" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group mujer" data-brand="paris hilton">
+        <img src="baner_50.webp" alt="Paris Hilton" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_88.webp"></div><h3>Can Can</h3><a href="https://wa.me/573134778625?text=Info: Can Can" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_87.webp"></div><h3>Dazzle</h3><a href="https://wa.me/573134778625?text=Info: Dazzle Paris Hilton" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_89.webp"></div><h3>Heiress</h3><a href="https://wa.me/573134778625?text=Info: Heiress Paris Hilton" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_90.webp"></div><h3>Paris Hilton</h3><a href="https://wa.me/573134778625?text=Info: Paris Hilton Tradicional" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_92.webp"></div><h3>Rosé Rush</h3><a href="https://wa.me/573134778625?text=Info: Rosé Rush" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_91.webp"></div><h3>Gold Rush</h3><a href="https://wa.me/573134778625?text=Info: Gold Rush" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="paco rabanne">
+        <img src="baner_24.webp" alt="PACO RABANNE" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_95.webp"></div><h3>Olympea</h3><a href="https://wa.me/573134778625?text=Info: Olympea" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_100.webp"></div><h3>Olympea Aqua</h3><a href="https://wa.me/573134778625?text=Info: Olympea Aqua" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_101.webp"></div><h3>Olympea Parfum</h3><a href="https://wa.me/573134778625?text=Info: Olympea Parfum" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_96.webp"></div><h3>Olympea Solar</h3><a href="https://wa.me/573134778625?text=Info: Olympea Solar" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_94.webp"></div><h3>Olympea Legend</h3><a href="https://wa.me/573134778625?text=Info: Olympea Legend" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_93.webp"></div><h3>Olympea Blossom</h3><a href="https://wa.me/573134778625?text=Info: Olympea Blossom" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_97.webp"></div><h3>Lady Million</h3><a href="https://wa.me/573134778625?text=Info: Lady Million" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_99.webp"></div><h3>Lady Million Lucky</h3><a href="https://wa.me/573134778625?text=Info: Lady Million Lucky" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_98.webp"></div><h3>Lady Million Prive</h3><a href="https://wa.me/573134778625?text=Info: Lady Million Prive" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_103.webp"></div><h3>Lady Million Royal</h3><a href="https://wa.me/573134778625?text=Info: Lady Million Royal" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_104.webp"></div><h3>Lady Million Fabulous</h3><a href="https://wa.me/573134778625?text=Info: Lady Million Fabulous" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_102.webp"></div><h3>Lady Million Empire</h3><a href="https://wa.me/573134778625?text=Info: Lady Million Empire" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_109.webp"></div><h3>Fame</h3><a href="https://wa.me/573134778625?text=Info: Fame" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_108.webp"></div><h3>Fame Blooming Pink</h3><a href="https://wa.me/573134778625?text=Info: Fame Blooming Pink" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_106.webp"></div><h3>Pure XS Dama</h3><a href="https://wa.me/573134778625?text=Info: Pure XS Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_105.webp"></div><h3>Black XS Excess</h3><a href="https://wa.me/573134778625?text=Info: Black XS Dama" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="versace">
+        <img src="baner_36.webp" alt="VERSACE DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_107.webp"></div><h3>Bright Crystal</h3><a href="https://wa.me/573134778625?text=Info: Bright Crystal" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_110.webp"></div><h3>Yellow Diamond</h3><a href="https://wa.me/573134778625?text=Info: Yellow Diamond" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_111.webp"></div><h3>Bright Crystal Absolu</h3><a href="https://wa.me/573134778625?text=Info: Bright Crystal Absolu" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_112.webp"></div><h3>Dylan Blue</h3><a href="https://wa.me/573134778625?text=Info: Dylan Blue Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_114.webp"></div><h3>Dylan Turquoise</h3><a href="https://wa.me/573134778625?text=Info: Dylan Turquoise" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_113.webp"></div><h3>Dylan Purple</h3><a href="https://wa.me/573134778625?text=Info: Dylan Purple" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="givenchy">
+        <img src="1255666555.webp" alt="GIVENCHY DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_115.webp"></div><h3>Ange Ou Demon</h3><a href="https://wa.me/573134778625?text=Info: Ange Ou Demon" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_116.webp"></div><h3>Ange Ou Demon Secret</h3><a href="https://wa.me/573134778625?text=Info: Ange Ou Demon Secret" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="escada">
+        <img src="baner_82.webp" alt="ESCADA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_118.webp"></div><h3>Sorbeto Roso</h3><a href="https://wa.me/573134778625?text=Info: Sorbeto Roso" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="jesus del pozo">
+        <img src="baner_83.webp" alt="JESUS DEL POZO" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_119.webp"></div><h3>Halloween</h3><a href="https://wa.me/573134778625?text=Info: Halloween Jesus del Pozo" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group mujer" data-brand="antonio banderas">
+        <img src="baner_2.webp" alt="ANTONIO BANDERAS DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer">
+                <div class="img-container"><img src="a_117.webp"></div>
+                <h3>Blue Seduction</h3>
+                <a href="https://wa.me/573134778625?text=Info: Blue Seduction Dama" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="clinique">
+        <img src="baner_44.webp" alt="CLINIQUE DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer">
+                <div class="img-container"><img src="a_122.webp"></div>
+                <h3>Clinique Happy</h3>
+                <a href="https://wa.me/573134778625?text=Info: Clinique Happy Dama" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="valentino">
+        <img src="baner_61.webp" alt="VALENTINO DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_120.webp"></div><h3>Valentino Donna</h3><a href="https://wa.me/573134778625?text=Info: Valentino Donna" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_121.webp"></div><h3>Born In Roma</h3><a href="https://wa.me/573134778625?text=Info: Born In Roma Dama" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="perry ellis">
+        <img src="baner_38.webp" alt="PERRY ELLIS DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_125.webp"></div><h3>360°</h3><a href="https://wa.me/573134778625?text=Info: 360 Tradicional Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_126.webp"></div><h3>360° Red</h3><a href="https://wa.me/573134778625?text=Info: 360 Red Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_123.webp"></div><h3>360° Coral</h3><a href="https://wa.me/573134778625?text=Info: 360 Coral Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_124.webp"></div><h3>360° Purple</h3><a href="https://wa.me/573134778625?text=Info: 360 Purple Dama" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="moschino">
+        <img src="baner_48.webp" alt="MOSCHINO DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_129.webp"></div><h3>Moschino Toy 2</h3><a href="https://wa.me/573134778625?text=Info: Moschino Toy 2" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_130.webp"></div><h3>Bubble Gum</h3><a href="https://wa.me/573134778625?text=Info: Moschino Bubble Gum" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_128.webp"></div><h3>Toy 2 Pearl</h3><a href="https://wa.me/573134778625?text=Info: Moschino Toy 2 Pearl" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_127.webp"></div><h3>Funny</h3><a href="https://wa.me/573134778625?text=Info: Moschino Funny" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_131.webp"></div><h3>Love Love</h3><a href="https://wa.me/573134778625?text=Info: Moschino Love Love" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_132.webp"></div><h3>Chic Petals</h3><a href="https://wa.me/573134778625?text=Info: Moschino Chic Petals" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_134.webp"></div><h3>Happy Fiz</h3><a href="https://wa.me/573134778625?text=Info: Moschino Happy Fiz" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_133.webp"></div><h3>Light Clouds</h3><a href="https://wa.me/573134778625?text=Info: Moschino Light Clouds" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_137.webp"></div><h3>Fresh</h3><a href="https://wa.me/573134778625?text=Info: Moschino Fresh Azul" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_136.webp"></div><h3>Fresh Gold</h3><a href="https://wa.me/573134778625?text=Info: Moschino Fresh Gold" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_135.webp"></div><h3>Fresh Pink</h3><a href="https://wa.me/573134778625?text=Info: Moschino Fresh Pink" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="hugo boss">
+        <img src="baner_7.webp" alt="HUGO BOSS DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer">
+                <div class="img-container"><img src="a_139.webp"></div>
+                <h3>The Scent</h3>
+                <a href="https://wa.me/573134778625?text=Info: The Scent Dama" class="price-link">WHATSAPP</a>
+            </div>
+        </div>
+    </div>
+<div class="brand-group mujer" data-brand="juicy couture">
+        <img src="baner_84.webp" alt="JUICY COUTURE" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_138.webp"></div><h3>Viva La Juicy</h3><a href="https://wa.me/573134778625?text=Info: Viva La Juicy" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="lancome">
+        <img src="baner_85.webp" alt="LANCÔME PARIS" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_141.webp"></div><h3>La Vie Est Belle</h3><a href="https://wa.me/573134778625?text=Info: La Vie Est Belle" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_140.webp"></div><h3>Intensement</h3><a href="https://wa.me/573134778625?text=Info: La Vie Est Belle Intensement" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_144.webp"></div><h3>L´elixir</h3><a href="https://wa.me/573134778625?text=Info: La Vie Est Belle L´elixir" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_142.webp"></div><h3>Artist Edition</h3><a href="https://wa.me/573134778625?text=Info: La Vie Est Belle Artist Edition" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_143.webp"></div><h3>D´exception</h3><a href="https://wa.me/573134778625?text=Info: La Vie Est Belle D´exception" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_147.webp"></div><h3>Tresor</h3><a href="https://wa.me/573134778625?text=Info: Tresor Lancome" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_145.webp"></div><h3>Miracle Secret</h3><a href="https://wa.me/573134778625?text=Info: Miracle Secret" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer coleccion" data-brand="thierry mugler">
+        <img src="baner_86.webp" alt="THIERRY MUGLER" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_146.webp"></div><h3>Angel</h3><a href="https://wa.me/573134778625?text=Info: Angel Thierry Mugler" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_148.webp"></div><h3>Alien</h3><a href="https://wa.me/573134778625?text=Info: Alien Thierry Mugler" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer coleccion" data-brand="jean paul gaultier">
+        <img src="baner_20.webp" alt="JEAN PAUL GAULTIER" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_151.webp"></div><h3>Scandal Caja/Lata</h3><a href="https://wa.me/573134778625?text=Info: Scandal Dama Caja-Lata" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_153.webp"></div><h3>Divine Lata</h3><a href="https://wa.me/573134778625?text=Info: JPG Divine Lata" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_152.webp"></div><h3>So Scandal Caja</h3><a href="https://wa.me/573134778625?text=Info: So Scandal Caja" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_149.webp"></div><h3>So Scandal Lata</h3><a href="https://wa.me/573134778625?text=Info: So Scandal Lata" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="issey miyake">
+        <img src="baner_31.webp" alt="ISSEY MIYAKE" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_155.webp"></div><h3>Issey Miyake Dama</h3><a href="https://wa.me/573134778625?text=Info: Issey Miyake Dama" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="jennifer lopez">
+        <img src="baner_87.webp" alt="JENNIFER LOPEZ" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_154.webp"></div><h3>Jlo Live</h3><a href="https://wa.me/573134778625?text=Info: Jlo Live Jennifer Lopez" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group mujer" data-brand="tommy hilfiger">
+        <img src="baner_53.webp" alt="TOMMY HILFIGER DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_156.webp"></div><h3>Tommy Girl</h3><a href="https://wa.me/573134778625?text=Info: Tommy Girl" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_157.webp"></div><h3>Tommy Girl Now</h3><a href="https://wa.me/573134778625?text=Info: Tommy Girl Now" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="gucci">
+        <img src="baner_46.webp" alt="GUCCI DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_163.webp"></div><h3>Gucci Bloom</h3><a href="https://wa.me/573134778625?text=Info: Gucci Bloom" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_159.webp"></div><h3>Bamboo</h3><a href="https://wa.me/573134778625?text=Info: Gucci Bamboo" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_162.webp"></div><h3>Acqua Di Fiori</h3><a href="https://wa.me/573134778625?text=Info: Gucci Bloom Acqua Di Fiori" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="kenzo">
+        <img src="baner_88.webp" alt="KENZO" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_158.webp"></div><h3>Flower By Kenzo</h3><a href="https://wa.me/573134778625?text=Info: Flower By Kenzo" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="britney spears">
+        <img src="baner_89.webp" alt="BRITNEY SPEARS" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_160.webp"></div><h3>Fantasy</h3><a href="https://wa.me/573134778625?text=Info: Britney Spears Fantasy" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer coleccion" data-brand="yves saint laurent">
+        <img src="baner_59.webp" alt="YVES SAINT LAURENT DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_161.webp"></div><h3>Manifesto</h3><a href="https://wa.me/573134778625?text=Info: YSL Manifesto" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_166.webp"></div><h3>Mon Paris</h3><a href="https://wa.me/573134778625?text=Info: YSL Mon Paris" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_167.webp"></div><h3>Black Opium</h3><a href="https://wa.me/573134778625?text=Info: YSL Black Opium" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+<div class="brand-group arabes unisex coleccion" data-brand="montale">
+        <img src="baner_90.webp" alt="MONTALE PARÍS" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_164.webp"></div><h3>Starry Night</h3><a href="https://wa.me/573134778625?text=Info: Starry Night" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_170.webp"></div><h3>Intense Roses Musk</h3><a href="https://wa.me/573134778625?text=Info: Intense Roses Musk" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_168.webp"></div><h3>Arabians</h3><a href="https://wa.me/573134778625?text=Info: Arabians" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_165.webp"></div><h3>Arabians Tonka</h3><a href="https://wa.me/573134778625?text=Info: Arabians Tonka" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_171.webp"></div><h3>Bengal Oud</h3><a href="https://wa.me/573134778625?text=Info: Bengal Oud" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_174.webp"></div><h3>Day Dream</h3><a href="https://wa.me/573134778625?text=Info: Day Dream" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_175.webp"></div><h3>Wood & Spices</h3><a href="https://wa.me/573134778625?text=Info: Wood & Spices" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_177.webp"></div><h3>Candy Roses</h3><a href="https://wa.me/573134778625?text=Info: Candy Roses" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_169.webp"></div><h3>Aoud Lagoon</h3><a href="https://wa.me/573134778625?text=Info: Aoud Lagoon" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_173.webp"></div><h3>Roses Musk</h3><a href="https://wa.me/573134778625?text=Info: Roses Musk" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_176.webp"></div><h3>Pure Gold</h3><a href="https://wa.me/573134778625?text=Info: Pure Gold" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_172.webp"></div><h3>Aoud Amber Rose</h3><a href="https://wa.me/573134778625?text=Info: Aoud Amber Rose" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_178.webp"></div><h3>Pink Extasy</h3><a href="https://wa.me/573134778625?text=Info: Pink Extasy" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer coleccion" data-brand="parfums de marly">
+        <img src="baner_5.webp" alt="PARFUMS DE MARLY DAMA" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer coleccion"><div class="img-container"><img src="a_179.webp"></div><h3>Delina</h3><a href="https://wa.me/573134778625?text=Info: Delina" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="pepe jeans">
+        <img src="baner_91.webp" alt="PEPE JEANS" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_181.webp"></div><h3>London</h3><a href="https://wa.me/573134778625?text=Info: London Dama" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_182.webp"></div><h3>Celebrate</h3><a href="https://wa.me/573134778625?text=Info: Celebrate Dama" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group mujer" data-brand="victoria secret">
+        <img src="baner_92.webp" alt="VICTORIA´S SECRET" class="brand-banner">
+        <div class="grid">
+            <div class="card mujer"><div class="img-container"><img src="a_185.webp"></div><h3>Bombshell</h3><a href="https://wa.me/573134778625?text=Info: Bombshell" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_180.webp"></div><h3>Bombshell NY</h3><a href="https://wa.me/573134778625?text=Info: Bombshell NY" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_186.webp"></div><h3>Bombshell Intense</h3><a href="https://wa.me/573134778625?text=Info: Bombshell Intense" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_187.webp"></div><h3>Bombshell Seduction</h3><a href="https://wa.me/573134778625?text=Info: Bombshell Seduction" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_188.webp"></div><h3>Tease</h3><a href="https://wa.me/573134778625?text=Info: Tease Victoria Secret" class="price-link">WHATSAPP</a></div>
+            <div class="card mujer"><div class="img-container"><img src="a_183.webp"></div><h3>Very Sexy</h3><a href="https://wa.me/573134778625?text=Info: Very Sexy Victoria Secret" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+
+    <div class="brand-group arabes unisex coleccion" data-brand="bond no 9">
+        <img src="baner_93.webp" alt="BOND N° 9" class="brand-banner">
+        <div class="grid">
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_184.webp"></div><h3>Patchouly</h3><a href="https://wa.me/573134778625?text=Info: Patchouly Bond 9" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_192.webp"></div><h3>Blecker</h3><a href="https://wa.me/573134778625?text=Info: Blecker Bond 9" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_193.webp"></div><h3>West Side</h3><a href="https://wa.me/573134778625?text=Info: West Side Bond 9" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_190.webp"></div><h3>I Love NY</h3><a href="https://wa.me/573134778625?text=Info: I Love NY Bond 9" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_189.webp"></div><h3>New York Patchouly</h3><a href="https://wa.me/573134778625?text=Info: New York Patchouly" class="price-link">WHATSAPP</a></div>
+            <div class="card arabes unisex coleccion"><div class="img-container"><img src="a_191.webp"></div><h3>Tribeca</h3><a href="https://wa.me/573134778625?text=Info: Tribeca Bond 9" class="price-link">WHATSAPP</a></div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div style="text-align: center; padding: 40px 5%; background: #f4f4f4; border-top: 1px solid #ddd;">
+        <img src="UNISEX.webp" alt="Akantis" class="logo" style="margin-bottom:20px; filter: contrast(0.5);">
+        <p style="font-size: 14px; color: #666;">&copy; 2026 Akantis Perfumería - Línea AAA</p>
+        <p style="font-size: 12px; color: #999;">Bogotá, Colombia</p>
+    </div>
+</footer>
+
+<button onclick="topFunction()" id="btnBackToTop" title="Subir">↑</button>
+
+<a href="https://wa.me/573134778625" class="whatsapp-float" target="_blank">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.4 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.4-29.8-17-41.1-4.5-10.9-9.1-9.5-12.4-9.7-3.2-.1-6.9-.1-10.6-.1-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.3 5.7 23.6 9.2 31.7 11.7 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</a>
+
+<script>
+    // 1. GENERADOR DE ICONOS (Añade el logo de WA a los botones de producto)
+    document.querySelectorAll('.price-link').forEach(button => {
+        const icon = document.createElement('img');
+        icon.src = 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg';
+        icon.className = 'ws-icon';
+        button.prepend(icon);
+    });
+
+    // 2. SISTEMA DE FILTRADO PARA 6 CATEGORÍAS
+    function filterGender(category) {
+        const groups = document.getElementsByClassName("brand-group");
+        const btns = document.getElementsByClassName("filter-btn");
+        
+        document.getElementById("brandSearch").value = ""; 
+
+        for (let i = 0; i < groups.length; i++) {
+            let hasVisibleCards = false;
+            const cards = groups[i].getElementsByClassName("card");
+
+            for (let j = 0; j < cards.length; j++) {
+                if (category === "all" || cards[j].classList.contains(category)) {
+                    cards[j].style.display = "flex";
+                    hasVisibleCards = true;
+                } else {
+                    cards[j].style.display = "none";
+                }
+            }
+            // Mostrar u ocultar el banner de la marca si tiene productos visibles
+            groups[i].style.display = hasVisibleCards ? "block" : "none";
+        }
+        
+        for (let btn of btns) { btn.classList.remove("active"); }
+        event.currentTarget.classList.add("active");
+    }
+
+    // 3. BUSCADOR INTELIGENTE POR TEXTO
+    function searchFunction() {
+        const input = document.getElementById("brandSearch").value.toUpperCase();
+        const catalog = document.getElementById("catalog");
+        const groups = catalog.getElementsByClassName("brand-group");
+
+        for (let i = 0; i < groups.length; i++) {
+            const brandName = groups[i].getAttribute("data-brand").toUpperCase();
+            const cards = groups[i].getElementsByClassName("card");
+            let hasMatch = false;
+
+            for (let j = 0; j < cards.length; j++) {
+                const productName = cards[j].getElementsByTagName("h3")[0].innerText.toUpperCase();
+                if (productName.includes(input) || brandName.includes(input)) {
+                    cards[j].style.display = "flex";
+                    hasMatch = true;
+                } else {
+                    cards[j].style.display = "none";
+                }
+            }
+            groups[i].style.display = hasMatch ? "block" : "none";
+        }
+    }
+
+    // 4. LÓGICA DEL BOTÓN SUBIR
+    const topBtn = document.getElementById("btnBackToTop");
+    window.onscroll = function() {
+        if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+            topBtn.style.display = "block";
+        } else {
+            topBtn.style.display = "none";
+        }
+    };
+    function topFunction() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+// 1. AUTOMATIZACIÓN: Crea los botones para todos los perfumes automáticamente
+document.addEventListener("DOMContentLoaded", function() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        const linkWA = card.querySelector('.price-link');
+        const h3 = card.querySelector('h3');
+        if (linkWA && h3 && !card.querySelector('.add-to-cart-btn')) {
+            const nombrePerfume = h3.innerText;
+            const container = document.createElement('div');
+            container.className = 'button-container';
+            const btnCart = document.createElement('button');
+            btnCart.className = 'add-to-cart-btn';
+            btnCart.innerHTML = '🛒';
+            btnCart.onclick = function() { agregarAlCarrito(nombrePerfume); };
+            linkWA.parentNode.insertBefore(container, linkWA);
+            container.appendChild(linkWA);
+            container.appendChild(btnCart);
+        }
+    });
+    renderizarCarrito(); // Carga lo que ya esté en el carrito
+});
+
+// 2. LÓGICA DEL CARRITO: Manejo de datos y persistencia
+let carrito = JSON.parse(localStorage.getItem('carritoAkantis')) || [];
+
+function toggleCart() {
+    document.getElementById('side-cart').classList.toggle('active');
+}
+
+function agregarAlCarrito(nombre) {
+    let item = carrito.find(i => i.nombre === nombre);
+    if (item) { 
+        item.cantidad++; 
+    } else { 
+        carrito.push({ nombre: nombre, cantidad: 1 }); 
+    }
+    guardarYActualizar();
+    
+    // ESTA ES LA LÍNEA QUE FALTA:
+    alert("Agregado a tu lista: " + nombre);
+}
+
+function cambiarCantidad(nombre, delta) {
+    let item = carrito.find(i => i.nombre === nombre);
+    if (item) {
+        item.cantidad += delta;
+        if (item.cantidad <= 0) { eliminarItem(nombre); }
+        guardarYActualizar();
+    }
+}
+
+function eliminarItem(nombre) {
+    carrito = carrito.filter(i => i.nombre !== nombre);
+    guardarYActualizar();
+}
+
+function guardarYActualizar() {
+    localStorage.setItem('carritoAkantis', JSON.stringify(carrito));
+    renderizarCarrito();
+}
+
+function renderizarCarrito() {
+    const container = document.getElementById('cart-items');
+    if(!container) return;
+    container.innerHTML = "";
+    if (carrito.length === 0) {
+        container.innerHTML = "<p style='text-align:center; opacity:0.5; margin-top:50px;'>Tu lista está vacía</p>";
+        return;
+    }
+    carrito.forEach(item => {
+        container.innerHTML += `
+            <div class="cart-item">
+                <div style="flex:1;"><strong>${item.nombre}</strong></div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <button class="qty-btn" onclick="cambiarCantidad('${item.nombre}', -1)">-</button>
+                    <span>${item.cantidad}</span>
+                    <button class="qty-btn" onclick="cambiarCantidad('${item.nombre}', 1)">+</button>
+                    <button onclick="eliminarItem('${item.nombre}')" style="border:none; background:none; cursor:pointer; font-size:16px; margin-left:5px;">🗑️</button>
+                </div>
+            </div>`;
+    });
+}
+
+function enviarWhatsApp() {
+    if (carrito.length === 0) return alert("Agrega perfumes primero");
+    let mensaje = "Hola Akantis, me interesa solicitar los siguientes perfumes de la Línea AAA:\n\n";
+    carrito.forEach(item => { mensaje += `• ${item.cantidad}x ${item.nombre}\n`; });
+    mensaje += "\n¿Me podrías confirmar disponibilidad y precios?";
+    window.open("https://wa.me/573134778625?text=" + encodeURIComponent(mensaje), "_blank");
+}
+</script>
+
+</body>
+</html>
